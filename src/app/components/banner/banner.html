@@ -1,0 +1,92 @@
+<section class="hero-carousel full-width">
+
+  <div class="carousel-container">
+
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="carousel-slide"
+      [class.active]="i === currentSlide">
+
+      <div
+        class="slide-bg"
+        [ngStyle]="{
+          'background-image':
+          'url(' + slide.fondo + ')'
+        }">
+
+        <div class="slide-content">
+
+          <!-- LIBROS -->
+
+          <div class="slide-left">
+
+            <img
+              class="slide-books"
+              [src]="slide.libros"
+              [alt]="slide.titulo">
+
+          </div>
+
+          <!-- TEXTO -->
+
+          <div class="slide-right">
+
+            <h1>
+              {{ slide.titulo }}
+            </h1>
+
+            <p>
+              {{ slide.descripcion }}
+            </p>
+
+            <button
+              class="btn-coleccion"
+              (click)="navegar(slide.ruta)">
+
+              Ver colección
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FLECHAS -->
+
+    <div class="carousel-controls">
+
+      <button
+        (click)="anteriorSlide()">
+
+        ❮
+
+      </button>
+
+      <button
+        (click)="siguienteSlide()">
+
+        ❯
+
+      </button>
+
+    </div>
+
+    <!-- INDICADORES -->
+
+    <div class="carousel-indicators">
+
+      <span
+        *ngFor="let slide of slides; let i = index"
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)">
+      </span>
+
+    </div>
+
+  </div>
+
+</section>

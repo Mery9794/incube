@@ -1,0 +1,462 @@
+<!-- HEADER -->
+<header class="header" [class.scrolled]="scrolled">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+
+    <!-- LOGO -->
+    <div class="logo-container">
+      <a href="#inicio">
+        <img src="logos/logo-incube- blanco.png" class="logo" alt="Logo INCUBE">
+      </a>
+    </div>
+
+    <!-- TITULO -->
+    <div class="titulo-centro">
+      <h2>{{ ui.titulo }}</h2>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </div>
+
+    <!-- REDES -->
+    <div class="redes">
+
+      <a href="https://facebook.com" target="_blank" class="icon">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+
+      <a href="https://instagram.com" target="_blank" class="icon">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- MENU -->
+  <nav class="menu">
+
+    <div class="menu-links" [class.active]="menuOpen">
+
+      <a (click)="scrollTo('coleccion')">
+        Colección
+      </a>
+
+      <a *ngIf="ui.funcionamientoPasos?.length" (click)="scrollTo('funcionamiento')">
+
+        Funcionamiento
+
+      </a>
+
+      <a (click)="scrollTo('contenido')">
+        Contenido
+      </a>
+
+    </div>
+
+    <div class="menu-actions" [class.active]="menuOpen">
+
+      <button type="button" class="btn-primary" (click)="abrirFormulario('info')">
+
+        Solicitar información
+
+      </button>
+
+      <button type="button" class="btn-secondary" (click)="abrirFormulario('contacto')">
+
+        Contactanos
+
+      </button>
+
+    </div>
+
+  </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+  <div class="hero-left">
+
+    <img [src]="ui.heroImg" alt="Hero">
+
+  </div>
+
+  <div class="hero-right">
+
+    <div class="hero-card">
+
+      <h2>
+
+        {{ ui.heroTitulo }}
+
+      </h2>
+
+      <p>
+
+        {{ ui.heroDescripcion }}
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- COLECCION -->
+<section class="coleccion-info" id="coleccion">
+
+  <div class="coleccion-container">
+
+    <!-- TEXTO -->
+    <div class="coleccion-texto">
+
+      <h2>
+        {{ ui.coleccionTitulo }}
+      </h2>
+
+      <p *ngFor="let t of ui.coleccionTextos">
+        {{ t }}
+      </p>
+
+    </div>
+
+<!-- CARRUSEL -->
+<div class="carousel">
+
+  <!-- Flecha anterior -->
+  <button
+    class="carousel-btn carousel-prev"
+    (click)="anterior()"
+    *ngIf="paginas.length > 1">
+    ‹
+  </button>
+
+  <!-- Ventana del carrusel -->
+  <div class="carousel-viewport">
+
+    <div
+      class="carousel-track"
+      [style.transform]="'translateX(-' + (paginaActual * 100) + '%)'">
+
+      <!-- Cada página contiene hasta 4 imágenes -->
+      <div
+        class="carousel-page"
+        *ngFor="let pagina of paginas">
+
+        <img
+          *ngFor="let img of pagina"
+          [src]="img"
+          alt="Imagen colección">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Flecha siguiente -->
+  <button
+    class="carousel-btn carousel-next"
+    (click)="siguiente()"
+    *ngIf="paginas.length > 1">
+    ›
+  </button>
+
+  <!-- PUNTITOS -->
+  <div
+    class="carousel-dots"
+    *ngIf="paginas.length > 1">
+
+    <button
+      *ngFor="let pagina of paginas; let i = index"
+      class="carousel-dot"
+      [class.active]="paginaActual === i"
+      (click)="irAPagina(i)">
+    </button>
+
+  </div>
+
+</div>
+
+  </div>
+
+</section>
+
+<!-- EXTRA -->
+
+<section class="coleccion-extra" *ngIf="ui.coleccionExtraTextos?.length">
+
+  <div class="coleccion-extra-container">
+
+    <p *ngFor="let texto of ui.coleccionExtraTextos">
+
+      {{ texto }}
+
+    </p>
+
+  </div>
+
+</section>
+
+<!-- FUNCIONAMIENTO -->
+
+<section class="funcionamiento-completo" id="funcionamiento">
+
+  <!-- HEADER -->
+
+  <div class="requisitos-header">
+
+    <h2>
+
+      Funcionamiento
+
+    </h2>
+
+  </div>
+
+  <!-- TEXTO -->
+
+  <div class="requisitos-texto" *ngIf="ui.requisitosTexto">
+
+    <p>
+
+      {{ ui.requisitosTexto }}
+
+    </p>
+
+  </div>
+
+  <!-- PASOS -->
+
+  <section class="funcionamiento" *ngIf="ui.funcionamientoPasos?.length">
+
+    <h3>
+
+      ¿Cómo funciona?
+
+    </h3>
+
+    <div class="funcionamiento-grid">
+
+      <div class="paso" *ngFor="let paso of ui.funcionamientoPasos; let i = index">
+
+        <span>
+
+          {{ i + 1 }}
+
+        </span>
+
+        <p>
+
+          {{ paso }}
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- VIDEO -->
+
+  <section class="video-demo" *ngIf="ui.videoUrl">
+
+    <h3>
+
+      Video demostrativo
+
+    </h3>
+
+    <div class="video-container">
+
+      <video controls>
+
+        <source [src]="ui.videoUrl" type="video/mp4">
+
+      </video>
+
+    </div>
+
+  </section>
+
+</section>
+
+<!-- ================= ENTREGAS ================= -->
+
+<section class="entregas-header" id="contenido" *ngIf="ui.entregasTitulo">
+
+  <h2>
+    {{ ui.entregasTitulo }}
+  </h2>
+
+</section>
+
+<section class="entregas" *ngIf="items.length">
+
+  <!-- GRID -->
+
+  <div class="entregas-grid">
+
+    <div class="objetos" *ngFor="let item of items">
+
+      <img *ngIf="item.imagen" [src]="item.imagen" [alt]="item.nombre">
+
+      <h4>
+
+        {{ item.nombre }}
+
+      </h4>
+
+      <span *ngIf="item.entrega">
+
+        {{ item.entrega }}
+
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- LISTADO -->
+
+  <div class="listado-container">
+
+    <h2 class="toggle-titulo" (click)="mostrarListado=!mostrarListado">
+
+      {{ mostrarListado ? '▲' : '▼' }}
+
+      <u>LISTADO</u>
+
+    </h2>
+
+    <div class="lista" *ngIf="mostrarListado">
+
+      <p *ngFor="let item of lista; let i=index">
+
+        {{ i + 1 }}. {{ item.nombre }}
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= REDES ================= -->
+
+<section class="redes-pilares">
+
+  <h2>
+
+    ¡Seguinos!
+
+  </h2>
+
+  <div class="redes-footer">
+
+    <a href="https://facebook.com" target="_blank" class="icon-footer">
+
+      <i class="fa-brands fa-facebook-f"></i>
+
+    </a>
+
+    <a href="https://instagram.com" target="_blank" class="icon-footer">
+
+      <i class="fa-brands fa-instagram"></i>
+
+    </a>
+
+    <a href="mailto:tec.incube@gmail.com" class="icon-footer">
+
+      <i class="fa-regular fa-envelope"></i>
+
+    </a>
+
+  </div>
+
+</section>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" *ngIf="mostrarFormulario">
+
+  <div class="modal-contenido">
+
+    <button class="cerrar" type="button" (click)="cerrarFormulario()">
+
+      ×
+
+    </button>
+
+    <h2>
+
+      {{ tituloFormulario }}
+
+    </h2>
+
+    <p class="descripcion-formulario">
+
+      Completá el formulario y nos comunicaremos con vos a la brevedad.
+
+    </p>
+
+    <form>
+
+      <label>Nombre y apellido</label>
+      <input type="text" placeholder="Ingresá tu nombre completo">
+
+      <label>Correo electrónico</label>
+      <input type="email" placeholder="ejemplo@gmail.com">
+
+      <label>Teléfono (opcional)</label>
+      <input type="tel" placeholder="+54 9 221...">
+
+      <!-- ASUNTO -->
+      <label>Asunto</label>
+
+      <input class="asunto" type="text" [value]="asunto" readonly>
+
+      <label>Mensaje</label>
+      <textarea rows="6" placeholder="Escribí tu consulta...">
+  </textarea>
+
+      <button class="btn-enviar" type="submit">
+
+        <i class="fa-solid fa-paper-plane"></i>
+
+        Enviar consulta
+
+      </button>
+
+
+    </form>
+
+
+    <div class="info-contacto">
+
+      <p>
+
+        También podés escribirnos directamente a:
+
+      </p>
+
+      <strong>
+
+        tec.incube@gmail.com
+
+      </strong>
+
+    </div>
+
+  </div>
+
+</div>

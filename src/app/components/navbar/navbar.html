@@ -1,0 +1,83 @@
+<header class="navbar" role="banner">
+
+  <div class="navbar-container">
+
+    <!-- LOGO -->
+    <div class="logo-container">
+
+      <a href="#inicio">
+
+        <img src="logos/logo-incube- blanco.png" alt="Logo inCUBë" />
+
+      </a>
+
+    </div>
+
+    <!-- BOTON HAMBURGUESA -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </button>
+
+    <!-- MENU -->
+    <nav class="nav-links" [class.active]="menuAbierto">
+
+      <a href="#coleccion">
+        Colección
+      </a>
+      <a routerLink="/conocenos">
+        Conócenos
+      </a>
+
+      <div class="dropdown">
+
+        <a class="dropdown-btn">
+          Contacto
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+
+        <div class="dropdown-content">
+
+          <a routerLink="/atencion-cliente">
+            Atención al cliente
+          </a>
+
+          <a routerLink="/contactanos">
+            Contactanos
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- REDES MOBILE -->
+      <div class="mobile-socials">
+
+        <a href="https://facebook.com" target="_blank">
+          Facebook
+        </a>
+
+        <a href="https://instagram.com" target="_blank">
+          Instagram
+        </a>
+
+      </div>
+
+    </nav>
+
+    <!-- REDES DESKTOP -->
+    <div class="social-icons">
+
+      <a href="https://facebook.com" target="_blank" class="icon-footer">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+
+      <a href="https://instagram.com" target="_blank" class="icon-footer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+</header>

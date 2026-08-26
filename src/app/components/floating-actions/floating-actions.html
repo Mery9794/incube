@@ -1,0 +1,27 @@
+<div class="floating-actions">
+
+  <!-- WHATSAPP -->
+  <a
+    class="fab fab-whatsapp"
+    [href]="linkWhatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escribinos por WhatsApp"
+    title="Escribinos por WhatsApp"
+  >
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- VOLVER ARRIBA -->
+  <button
+    *ngIf="mostrarBotonSubir"
+    type="button"
+    class="fab fab-subir"
+    (click)="volverArriba()"
+    aria-label="Volver arriba"
+    title="Volver arriba"
+  >
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+</div>

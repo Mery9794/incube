@@ -1,0 +1,249 @@
+.conocenos-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:50px 25px;
+
+}
+
+
+/* HERO */
+
+.hero{
+
+    margin-bottom:90px;
+
+}
+
+.hero img{
+
+    width:100%;
+
+    border-radius:18px;
+
+    display:block;
+
+}
+
+.hero-text{
+
+    text-align:center;
+
+    margin-top:35px;
+
+}
+
+.hero-text h1{
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+}
+
+.hero-text p{
+
+    color:#555;
+
+    font-size:1.2rem;
+
+}
+
+
+/* SECCIONES */
+
+.section{
+
+    margin-bottom:90px;
+
+}
+
+.gris{
+
+    background:#f7f7f7;
+
+    border-radius:20px;
+
+    padding:50px;
+
+}
+
+
+/* GRID */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:50px;
+
+    align-items:center;
+
+}
+
+.grid img{
+
+    width:100%;
+
+    border-radius:15px;
+
+}
+
+.grid h2{
+
+    font-size:2rem;
+
+    margin-bottom:20px;
+
+}
+
+.grid p{
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+
+/* CARDS */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-top:40px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.card img{
+
+    width:70px;
+
+    margin-bottom:20px;
+
+}
+
+.card h3{
+
+    margin-bottom:12px;
+
+}
+
+.card p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+
+/* IMPACTO */
+
+.impacto{
+
+    background:#f4f4f4;
+
+    border-radius:18px;
+
+    padding:60px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    text-align:center;
+
+}
+
+.impacto h2{
+
+    font-size:3rem;
+
+    color:#1f6fb5;
+
+    margin-bottom:10px;
+
+}
+
+.impacto span{
+
+    color:#555;
+
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.impacto{
+
+    grid-template-columns:1fr;
+
+    gap:40px;
+
+}
+
+.hero-text h1{
+
+    font-size:2.2rem;
+
+}
+
+.hero-text p{
+
+    font-size:1rem;
+
+}
+
+.gris{
+
+    padding:35px 20px;
+
+}
+
+}

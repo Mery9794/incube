@@ -1,0 +1,77 @@
+<div class="home-container" id="inicio">
+
+  <!-- HERO -->
+  <app-banner></app-banner>
+
+  <!-- COLECCIONES -->
+  <section class="colecciones" id="coleccion">
+
+    <div class="card2">
+
+      <h2>Descubrí nuestras colecciones</h2>
+
+      <p>
+        Impulsamos ideas a través de la inclusión, la educación y la innovación tecnológica con realidad aumentada para
+        aprender explorando.
+      </p>
+
+      <div class="coleccion-grid">
+
+        <div *ngFor="let c of colecciones" class="coleccion-card">
+
+          <div class="banner-coleccion" [ngStyle]="{
+              'background-image':'url(' + c.fondo + ')'
+            }">
+
+          </div>
+
+          <div class="coleccion-info">
+
+            <h3>{{c.nombre}}</h3>
+
+            <p>{{c.descripcion}}</p>
+
+            <a class="button-collection" [routerLink]="['/coleccion', c.ruta]">
+
+              Ver colección
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES -->
+  <section class="faq">
+
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-item" *ngFor="let faq of preguntas; let i = index">
+
+      <button class="faq-question" (click)="faq.abierta = !faq.abierta">
+
+        {{ faq.pregunta }}
+
+        <span>
+          {{ faq.abierta ? '−' : '+' }}
+        </span>
+
+      </button>
+
+      <div class="faq-answer" *ngIf="faq.abierta">
+
+        <p>{{ faq.respuesta }}</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

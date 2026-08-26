@@ -1,0 +1,209 @@
+/* ================= HEADER ================= */
+
+:host ::ng-deep .top-bar {
+  background: #081a2f !important;
+}
+
+:host ::ng-deep .menu {
+  background: #f4f8fc !important;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+:host ::ng-deep .menu-links.active,
+:host ::ng-deep .menu-actions.active {
+  background: #f4f8fc !important;
+}
+
+
+
+/* ================= LINKS MENU ================= */
+
+:host ::ng-deep .menu a {
+  color: #16324f !important;
+
+  transition: color 0.3s ease;
+}
+
+:host ::ng-deep .menu a:hover {
+  color: #57b6ff !important;
+}
+
+
+
+/* ================= HERO ================= */
+
+:host ::ng-deep .hero {
+  background: linear-gradient(135deg,
+      #081a2f,
+      #0d2b52,
+      #1b5fa7) !important;
+}
+
+
+
+/* ================= TARJETA HERO ================= */
+
+
+:host ::ng-deep .hero-card {
+  background:
+    linear-gradient(rgb(123 121 121 / 34%),
+      rgb(245 245 245 / 92%)),
+    url('/pilares/fondoLineal.png') !important;
+
+
+  background-size: cover !important;
+  background-position: center !important;
+
+
+  max-width: 560px !important;
+
+
+  border-radius: 22px;
+
+
+  border: 1px solid rgba(87, 182, 255, 0.15);
+
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25) !important;
+
+
+  backdrop-filter: blur(8px);
+}
+
+
+
+
+/* ================= TITULO HERO ================= */
+
+:host ::ng-deep .hero-card h2 {
+  color: #0d2b52 !important;
+}
+
+
+
+/* ================= TEXTO HERO ================= */
+
+:host ::ng-deep .hero-card p {
+  color: #334155 !important;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+}
+
+
+
+/* ================= BOTONES ================= */
+
+:host ::ng-deep .btn-primary,
+:host ::ng-deep .btn-secondary {
+  background: #1b5fa7 !important;
+
+  color: white !important;
+
+  border-radius: 10px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+:host ::ng-deep .btn-primary:hover,
+:host ::ng-deep .btn-secondary:hover {
+  background: #144b86 !important;
+
+  transform: translateY(-2px);
+}
+
+
+
+/* ================= ICONOS ================= */
+
+:host ::ng-deep .icon,
+:host ::ng-deep .icon-footer {
+  background-color: #ffffff !important;
+
+  color: #1b5fa7 !important;
+}
+
+:host ::ng-deep .icon:hover,
+:host ::ng-deep .icon-footer:hover {
+  background-color: #1b5fa7 !important;
+
+  color: white !important;
+}
+
+
+
+/* ================= CARRUSEL ================= */
+
+:host ::ng-deep .carousel img {
+  border-radius: 14px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+:host ::ng-deep .carousel img:hover {
+  transform: scale(1.03);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* =================  REQUISITOS ================= */
+
+:host ::ng-deep .requisitos-header {
+  background-image:
+    linear-gradient(180deg,
+      rgba(204, 192, 150, 0.47) 66%,
+      rgba(204, 192, 150, 0.47) 100%),
+    url('/pilares/fondoLineal.png') !important;
+
+  background-size: cover !important;
+
+  background-position: left top !important;
+}
+
+/* ================= ENTREGAS ================= */
+
+:host ::ng-deep .entregas-header {
+  background-image:
+    linear-gradient(180deg,
+      rgba(204, 192, 150, 0.47) 66%,
+      rgba(204, 192, 150, 0.47) 100%),
+    url('/pilares/fondoLineal.png') !important;
+
+  background-size: cover !important;
+
+  background-position: left top !important;
+}
+
+:host ::ng-deep .objetos h4 {
+  color: #0d2b52 !important;
+}
+
+
+
+/* ================= LISTADO ================= */
+
+:host ::ng-deep .toggle-titulo:hover {
+  color: #57b6ff !important;
+}
+
+
+
+/* ================= REDES ================= */
+
+:host ::ng-deep .redes-pilares {
+  background-image:
+    linear-gradient(180deg,
+      rgba(204, 192, 150, 0.47) 66%,
+      rgba(204, 192, 150, 0.47) 100%),
+    url('/pilares/fondoLineal.png') !important;
+
+  background-size: cover !important;
+
+  background-position: left top !important;
+}

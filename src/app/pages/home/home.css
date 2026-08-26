@@ -1,0 +1,300 @@
+.home-container{
+
+    max-width:90%;
+
+    margin:auto;
+
+}
+
+/*=========COLECCIONES===========*/
+
+.colecciones{
+
+    padding:60px 0;
+    padding-bottom: 0px;
+
+}
+
+.card2{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:40px;
+
+}
+
+/*====================*/
+
+.colecciones h2{
+
+    font-size:2.6rem;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-weight:700;
+
+}
+
+.colecciones>div>p{
+
+    text-align:center;
+
+    max-width:800px;
+
+    margin:0 auto 50px;
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+/*====================*/
+
+.coleccion-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:40px;
+
+}
+
+/*====================*/
+
+.coleccion-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.coleccion-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+/*====================*/
+
+.banner-coleccion{
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background-size:contain;
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    background-color:#fff;
+
+}
+
+/*====================*/
+
+.coleccion-info{
+
+    padding:28px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+}
+
+.coleccion-info h3{
+
+    font-size:2rem;
+
+    margin-bottom:16px;
+
+    color:#1d1d1d;
+
+}
+
+.coleccion-info p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+    flex:1;
+
+}
+
+/*====================*/
+
+.button-collection{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    background:#111;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.button-collection:hover{
+
+    background:#2f2f2f;
+
+}
+
+/*====================*/
+/* PREGUNTAS FRECUENTES */
+/*====================*/
+
+.faq{
+
+    max-width:900px;
+
+    margin:70px auto 40px;
+
+}
+
+.faq h2{
+
+    text-align:center;
+
+    font-size:2.4rem;
+
+    margin-bottom:35px;
+
+}
+
+.faq-item{
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.faq-question{
+
+    width:100%;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:22px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:1.15rem;
+
+    font-weight:600;
+
+    text-align:left;
+
+}
+
+.faq-question span{
+
+    font-size:1.8rem;
+
+    color:#1b5fa7;
+
+}
+
+.faq-answer{
+
+    padding-bottom:22px;
+
+}
+
+.faq-answer p{
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+/*========RESPONSIVE============*/
+
+@media(max-width:900px){
+
+    .coleccion-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .coleccion-info{
+
+        padding:22px;
+
+    }
+
+    .coleccion-info h3{
+
+        font-size:1.7rem;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .card2{
+
+        padding:20px;
+
+    }
+
+    .colecciones h2{
+
+        font-size:2rem;
+
+    }
+
+    .colecciones>div>p{
+
+        font-size:15px;
+
+    }
+
+}

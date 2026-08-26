@@ -1,0 +1,157 @@
+.footer {
+  background-color: #252525;
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.footer-title { 
+  margin: 0;
+  font-size: 2rem;
+  color: #ffffff;
+
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-header { 
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  width: 110px;
+  height: auto;
+}
+
+.footer-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.unlp-logo {
+  height: 60px;
+}
+
+.footer-divider {
+  border: 0;
+  height: 1px;
+  background-color: #cbd5e1;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer-bottom p {
+  margin: 0.3rem 0;
+}
+
+.footer-socials {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+
+.footer-socials img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.footer-socials img:hover {
+  transform: scale(1.15);
+  filter: brightness(1.1);
+}
+
+@media (prefers-color-scheme: light) {
+  .footer {
+    background-color: #252525;
+    color: #ffffff;
+  }
+
+  .footer-divider {
+    background-color: #cbd5e1;
+  }
+
+  .footer-title {
+    color: #ffffff;
+  }
+
+  .footer-bottom,
+  .footer-subinfo {
+    color: #ffffff;
+  }
+
+  .footer-socials img {
+    filter: none;
+  }
+}
+
+.footer-logos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .footer-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logos {
+    align-items: flex-start;
+    margin-top: 1rem;
+  }
+}
+
+.footer-info i {
+  margin-right: 0.5rem;
+  color: #ffffff;
+}
+
+.footer-info a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+strong{
+  color:#ffffff
+}
+.footer-copy {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto; 
+  padding: 10px 0;
+  color: #ffffff;  
+  font-size: 0.9rem;  
+}
