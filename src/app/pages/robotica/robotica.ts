@@ -17,7 +17,7 @@ export class RoboticaComponent {
     titulo: 'Robótica Aplicada',
 
     /* HERO */
-    heroImg: '/banner/baner-educacion.png',
+    heroImg: '/banner/baner-arduino.png',
     heroTitulo: 'Robótica Aplicada',
     heroDescripcion:
       'Diseño y programación de sistemas robóticos controlados mediante una aplicación móvil.',
@@ -82,8 +82,8 @@ export class RoboticaComponent {
     {
       nombre: 'Autito robótico',
       entrega: 'Proyecto 1',
-      imagen: 'pilares/robotica/autito.png'
-    }
+      imagen: 'pilares/robotica/sistemaRobotico/autito.png'
+    } 
   ];
 
 

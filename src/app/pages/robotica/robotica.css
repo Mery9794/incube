@@ -71,7 +71,11 @@
   backdrop-filter: blur(8px);
 }
 
+/* ================= TARJETA HERO ROBÓTICA ================= */
 
+:host ::ng-deep .hero-right {
+  top: 70% !important;
+}
 
 
 /* ================= TITULO HERO ================= */
@@ -206,4 +210,14 @@
   background-size: cover !important;
 
   background-position: left top !important;
+}
+
+/* ================= VIDEO ROBÓTICA ================= */
+
+:host ::ng-deep .video-container video {
+  width: 30% !important;
+  height: auto;
+  display: block;
+  margin: auto;
+  border-radius: 18px;
 }
