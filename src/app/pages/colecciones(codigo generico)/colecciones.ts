@@ -1,5 +1,15 @@
-import { Component, Input, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostListener,
+  OnInit,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import emailjs from '@emailjs/browser';
 
 export type PilarUI = {
 
@@ -36,11 +46,11 @@ export type PilarUI = {
 @Component({
   selector: 'app-colecciones',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './colecciones.html',
   styleUrls: ['../colecciones.css']
 })
-export class ColeccionComponent implements OnDestroy {
+export class ColeccionComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input({ required: true }) ui!: PilarUI;
 
@@ -80,7 +90,12 @@ export class ColeccionComponent implements OnDestroy {
       this.siguiente();
     }, 4000);
   }
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['imagenes']) {
+      this.crearPaginas();
+      this.paginaActual = 0;
+    }
+  }
   @HostListener('window:scroll')
   onScroll() {
     this.scrolled = window.scrollY > 50;
@@ -109,6 +124,12 @@ export class ColeccionComponent implements OnDestroy {
 
   asunto = '';
 
+  // Datos del formulario
+  nombre = '';
+  correo = '';
+  telefono = '';
+  mensaje = '';
+
   abrirFormulario(tipo: 'info' | 'contacto') {
 
     this.mostrarFormulario = true;
@@ -131,70 +152,115 @@ export class ColeccionComponent implements OnDestroy {
 
   }
 
-  cerrarFormulario() {
-
+  cerrarFormulario(): void {
     this.mostrarFormulario = false;
 
+    this.nombre = '';
+    this.correo = '';
+    this.telefono = '';
+    this.mensaje = '';
+  }
+
+  async enviarConsulta(formulario: any): Promise<void> {
+    if (formulario.invalid) {
+      formulario.control.markAllAsTouched();
+      return;
+    }
+
+    const parametros = {
+      nombre: this.nombre,
+      correo: this.correo,
+      telefono: this.telefono || 'No indicado',
+      asunto: this.asunto,
+      mensaje: this.mensaje
+    };
+
+    try {
+      await emailjs.send(
+        'service_nkr5rkm',
+        'template_xj0qmti',
+        parametros,
+        {
+          publicKey: 'iV0gpVewHxrGnZhcb'
+        }
+      );
+
+      alert('¡Consulta enviada correctamente! Gracias por contactar a INCUBÉ.');
+
+      formulario.resetForm();
+      this.nombre = '';
+      this.correo = '';
+      this.telefono = '';
+      this.mensaje = '';
+      this.cerrarFormulario();
+
+    } catch (error) {
+      console.error('Error al enviar la consulta:', error);
+
+      alert(
+        'No pudimos enviar tu consulta. Intentá nuevamente o escribinos a tec.incube@gmail.com.'
+      );
+    }
   }
 
   crearPaginas(): void {
 
-  this.paginas = [];
+    this.paginas = [];
 
-  for (let i = 0; i < this.imagenes.length; i += 4) {
+    for (let i = 0; i < this.imagenes.length; i += 4) {
 
-    this.paginas.push(
-      this.imagenes.slice(i, i + 4)
-    );
+      this.paginas.push(
+        this.imagenes.slice(i, i + 4)
+      );
+
+    }
 
   }
 
-}
 
+  siguiente(): void {
 
-siguiente(): void {
+    if (this.paginas.length <= 1) {
+      return;
+    }
 
-  if (this.paginas.length <= 1) {
-    return;
+    this.paginaActual++;
+
+    if (this.paginaActual >= this.paginas.length) {
+      this.paginaActual = 0;
+    }
+
   }
 
-  this.paginaActual++;
 
-  if (this.paginaActual >= this.paginas.length) {
-    this.paginaActual = 0;
+  anterior(): void {
+
+    if (this.paginas.length <= 1) {
+      return;
+    }
+
+    this.paginaActual--;
+
+    if (this.paginaActual < 0) {
+      this.paginaActual = this.paginas.length - 1;
+    }
+
   }
 
-}
 
+  irAPagina(indice: number): void {
 
-anterior(): void {
+    this.paginaActual = indice;
 
-  if (this.paginas.length <= 1) {
-    return;
   }
 
-  this.paginaActual--;
 
-  if (this.paginaActual < 0) {
-    this.paginaActual = this.paginas.length - 1;
+  ngOnDestroy(): void {
+
+    if (this.intervaloCarrusel) {
+      clearInterval(this.intervaloCarrusel);
+    }
+
   }
-
-}
-
-
-irAPagina(indice: number): void {
-
-  this.paginaActual = indice;
-
-}
-
-
-ngOnDestroy(): void {
-
-  if (this.intervaloCarrusel) {
-    clearInterval(this.intervaloCarrusel);
-  }
-
-}
 
 }

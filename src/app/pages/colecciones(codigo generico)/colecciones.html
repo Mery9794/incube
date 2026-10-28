@@ -127,63 +127,45 @@
 
     </div>
 
-<!-- CARRUSEL -->
-<div class="carousel">
+    <!-- CARRUSEL -->
+    <div class="carousel">
 
-  <!-- Flecha anterior -->
-  <button
-    class="carousel-btn carousel-prev"
-    (click)="anterior()"
-    *ngIf="paginas.length > 1">
-    ‹
-  </button>
+      <!-- Flecha anterior -->
+      <button class="carousel-btn carousel-prev" (click)="anterior()" *ngIf="paginas.length > 1">
+        ‹
+      </button>
 
-  <!-- Ventana del carrusel -->
-  <div class="carousel-viewport">
+      <!-- Ventana del carrusel -->
+      <div class="carousel-viewport">
 
-    <div
-      class="carousel-track"
-      [style.transform]="'translateX(-' + (paginaActual * 100) + '%)'">
+        <div class="carousel-track" [style.transform]="'translateX(-' + (paginaActual * 100) + '%)'">
 
-      <!-- Cada página contiene hasta 4 imágenes -->
-      <div
-        class="carousel-page"
-        *ngFor="let pagina of paginas">
+          <!-- Cada página contiene hasta 4 imágenes -->
+          <div class="carousel-page" *ngFor="let pagina of paginas">
 
-        <img
-          *ngFor="let img of pagina"
-          [src]="img"
-          alt="Imagen colección">
+            <img *ngFor="let img of pagina" [src]="img" alt="Imagen colección">
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Flecha siguiente -->
+      <button class="carousel-btn carousel-next" (click)="siguiente()" *ngIf="paginas.length > 1">
+        ›
+      </button>
+
+      <!-- PUNTITOS -->
+      <div class="carousel-dots" *ngIf="paginas.length > 1">
+
+        <button *ngFor="let pagina of paginas; let i = index" class="carousel-dot" [class.active]="paginaActual === i"
+          (click)="irAPagina(i)">
+        </button>
 
       </div>
 
     </div>
-
-  </div>
-
-  <!-- Flecha siguiente -->
-  <button
-    class="carousel-btn carousel-next"
-    (click)="siguiente()"
-    *ngIf="paginas.length > 1">
-    ›
-  </button>
-
-  <!-- PUNTITOS -->
-  <div
-    class="carousel-dots"
-    *ngIf="paginas.length > 1">
-
-    <button
-      *ngFor="let pagina of paginas; let i = index"
-      class="carousel-dot"
-      [class.active]="paginaActual === i"
-      (click)="irAPagina(i)">
-    </button>
-
-  </div>
-
-</div>
 
   </div>
 
@@ -409,25 +391,25 @@
 
     </p>
 
-    <form>
+    <form (ngSubmit)="enviarConsulta(formulario)" #formulario="ngForm" novalidate>
 
       <label>Nombre y apellido</label>
-      <input type="text" placeholder="Ingresá tu nombre completo">
+      <input type="text" name="nombre" [(ngModel)]="nombre" placeholder="Ingresá tu nombre completo" required>
 
       <label>Correo electrónico</label>
-      <input type="email" placeholder="ejemplo@gmail.com">
+      <input type="email" name="correo" [(ngModel)]="correo" placeholder="ejemplo@gmail.com" required email>
 
       <label>Teléfono (opcional)</label>
-      <input type="tel" placeholder="+54 9 221...">
+      <input type="tel" name="telefono" [(ngModel)]="telefono" placeholder="+54 9 221...">
 
       <!-- ASUNTO -->
       <label>Asunto</label>
 
       <input class="asunto" type="text" [value]="asunto" readonly>
-
       <label>Mensaje</label>
-      <textarea rows="6" placeholder="Escribí tu consulta...">
-  </textarea>
+
+      <textarea name="mensaje" [(ngModel)]="mensaje" rows="6" placeholder="Escribí tu consulta..." required>
+</textarea>
 
       <button class="btn-enviar" type="submit">
 
