@@ -1,11 +1,10 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home';
-import { CienciasNaturalesComponent } from './pages/R.A/Ciencias-Naturales/cienciasNaturales';
 import { ConocenosComponent } from './pages/conocenos/conocenos';
 import { AtencionClienteComponent } from './pages/atencion-cliente/atencion-cliente';
 import { ContactanosComponent } from './pages/contactanos/contactanos';
-import { RoboticaComponent } from './pages/robotica/robotica';
+import { ColeccionPageComponent } from './features/colecciones/coleccion-page/coleccion-page';
 
 export const routes: Routes = [
 
@@ -19,21 +18,11 @@ export const routes: Routes = [
   { path: 'atencion-cliente', component: AtencionClienteComponent, data: { hideNavbar: false } },
   { path: 'contactanos', component: ContactanosComponent, data: { hideNavbar: false } },
 
-  // COLECCIONES
-  {
-    path: 'coleccion/ciencias-naturales', component: CienciasNaturalesComponent, data: { hideNavbar: true }
-  },
+  // COLECCIONES (una sola ruta para todas: /coleccion/ciencias-naturales, /coleccion/robotica, …)
+  { path: 'coleccion/:slug', component: ColeccionPageComponent, data: { hideNavbar: true } },
 
-  {
-    path: 'coleccion/robotica', component: RoboticaComponent, data: { hideNavbar: true }
-  },
-
-  // PROYECTOS
-  {
-    path: 'proyectos/:tipo/:id',
-    component: CienciasNaturalesComponent,
-    data: { hideNavbar: true }
-  },
+ 
+  { path: 'proyectos/:tipo/:id', redirectTo: 'coleccion/ciencias-naturales' },
 
   // REDIRECCIÓN
   { path: '**', redirectTo: '' }

@@ -17,7 +17,7 @@
 
       <div class="coleccion-grid">
 
-        <div *ngFor="let c of colecciones" class="coleccion-card">
+        <div *ngFor="let c of colecciones()" class="coleccion-card">
 
           <div class="banner-coleccion" [ngStyle]="{
               'background-image':'url(' + c.fondo + ')'

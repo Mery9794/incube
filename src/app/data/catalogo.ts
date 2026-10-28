@@ -1,197 +1,212 @@
+import { Coleccion, Pilar, Recurso } from '../models/catalogo.model';
 
-export type EstadoItem = 'disponible' | 'en-desarrollo' | 'proximamente';
-
-export type PilarId =
-  | 'realidad-aumentada'
-  | 'impresion-3d'
-  | 'robotica-arduino';
-
-export type CategoriaId =
-  | 'ciencias-naturales'
-  | 'historia'
-  | 'naves'
-  | 'autos';
-
-export type TipoItem = 'libro' | 'material-3d' | 'robot' | 'app';
-
-export interface Pilar {
-  id: PilarId;
-  nombre: string;
-  ruta: string;
-  descripcion: string;
-  imagenTarjeta?: string;
-}
-
-export interface Categoria {
-  id: CategoriaId;
-  nombre: string;
-  descripcion: string;
-}
-
-export interface Item {
-  slug: string;
-  tipo: TipoItem;
-  pilar: PilarId;
-  categoria?: CategoriaId;
-  titulo: string;
-  resumen: string;
-  estado: EstadoItem;
-  imagen?: string;
-  video?: string;
-}
+/**
+ * Datos iniciales del catálogo (fuente local).
+ *
+ * Solo lo lee CatalogoService. Cuando el contenido se administre desde la web,
+ * este archivo se reemplaza por la lectura de la base de datos dentro del
+ * servicio y el resto de la aplicación no cambia.
+ */
 
 export const PILARES: Pilar[] = [
   {
     id: 'realidad-aumentada',
     nombre: 'Realidad Aumentada',
-    ruta: '/realidad-aumentada',
-    descripcion:
-      'Libros educativos interactivos para explorar contenidos mediante modelos 3D y recursos audiovisuales.',
-    imagenTarjeta: 'pilares/tarjetaEducación.png'
+    tema: 'realidad-aumentada',
+    orden: 1,
+
+    hero: {
+      imagen: '/banner/baner-educacion.png',
+      titulo: 'Realidad Aumentada',
+      descripcion: 'Libros educativos con realidad aumentada en 3D'
+    },
+
+    presentacion: {
+      titulo: 'Colección',
+      textos: [
+        'Libros educativos interactivos con tecnología de realidad aumentada.',
+        'Aprendizaje visual, dinámico e inclusivo.'
+      ],
+      textosExtra: [
+        'Los libros incluyen ilustraciones y portadas originales.',
+        'Cada obra combina contenido pedagógico con elementos en 3D.',
+        'Pensados para aprendizaje dinámico e inclusivo.'
+      ]
+    },
+
+    funcionamiento: {
+      titulo: '¿Cómo funciona?',
+      pasos: [
+        'Escaneá el código QR del libro.',
+        'Descargá la aplicación en tu dispositivo. Podés encontrarla en Play Store y App Store.',
+        'Abrí la aplicación de realidad aumentada.',
+        'Apuntá la cámara hacia las páginas interactivas del libro.',
+        'Descubrí modelos 3D y experiencias educativas interactivas.'
+      ],
+      requisitos:
+        'Para disfrutar de la realidad aumentada de esta colección necesitás un dispositivo móvil con cámara (como una tablet o un teléfono inteligente) que cuente con sistema operativo Android o iOS.',
+      videoUrl: 'pilares/realidadAumentada/publicidad.mp4'
+    },
+
+    entregasTitulo: 'Primeras entregas'
   },
+
   {
-    id: 'impresion-3d',
-    nombre: 'Impresión 3D',
-    ruta: '/impresion-3d',
-    descripcion:
-      'Materiales físicos y táctiles que complementan los libros y las experiencias educativas.'
-  },
-  {
-    id: 'robotica-arduino',
-    nombre: 'Kits Arduino y Robótica',
-    ruta: '/robotica-arduino',
-    descripcion:
-      'Proyectos robóticos educativos para armar, explorar e interactuar.',
-    imagenTarjeta: 'pilares/tarjetaArduino.png'
+    id: 'robotica-aplicada',
+    nombre: 'Robótica Aplicada',
+    tema: 'robotica',
+    orden: 2,
+
+    hero: {
+      imagen: '/banner/baner-arduino.png',
+      titulo: 'Robótica Aplicada',
+      descripcion:
+        'Diseño y programación de sistemas robóticos controlados mediante una aplicación móvil.'
+    },
+
+    presentacion: {
+      titulo: 'Colección',
+      textos: [
+        'Proyecto educativo basado en el desarrollo de un sistema robótico controlado mediante una aplicación móvil.',
+        'La propuesta integra programación, electrónica y comunicación inalámbrica para controlar diferentes funciones del sistema.'
+      ],
+      textosExtra: [
+        'Se utiliza una placa Arduino y un módulo Bluetooth para recibir las órdenes enviadas desde el dispositivo móvil.',
+        'La aplicación permite controlar el sistema mediante diferentes comandos de movimiento y funcionamiento.',
+        'El proyecto combina hardware y software en una experiencia práctica de aprendizaje.'
+      ]
+    },
+
+    funcionamiento: {
+      titulo: '¿Cómo funciona?',
+      pasos: [
+        'Encendé el sistema robótico y verificá que el módulo Bluetooth esté activo.',
+        'Descargá e instalá la aplicación de control en tu dispositivo Android.',
+        'Activá el Bluetooth y seleccioná el dispositivo para establecer la conexión.',
+        'Utilizá los controles de la aplicación para enviar las órdenes al sistema robótico.',
+        'Controlá el dispositivo mediante las diferentes opciones disponibles, incluyendo el modo automático.'
+      ],
+      descargas: [
+        {
+          nombre: 'Descargar aplicación Android',
+          icono: 'fab fa-android',
+          link: 'ACA_VA_EL_LINK'
+        }
+      ],
+      requisitos:
+        'Para su utilización necesitás un dispositivo Android con Bluetooth y el sistema robótico desarrollado con Arduino.',
+      videoUrl: 'pilares/robotica/video.mp4'
+    },
+
+    entregasTitulo: 'Primeras entregas'
   }
 ];
 
-export const CATEGORIAS: Categoria[] = [
+export const COLECCIONES: Coleccion[] = [
+  {
+    id: 'robotica',
+    slug: 'robotica',
+    pilarId: 'robotica-aplicada',
+    titulo: 'Robótica Aplicada',
+    orden: 1,
+    publicada: true,
+    descripcionTarjeta:
+      'Construí, programá y explorá mediante experiencias con Arduino, electrónica y robótica educativa.',
+    imagenTarjeta: 'pilares/tarjetaArduino.png',
+    imagenesCarrusel: [
+      // Acá después ponemos las fotos del proyecto
+      'pilares/robotica/autito1.jpg',
+      'pilares/robotica/autito2.jpg',
+      'pilares/robotica/autito3.jpg',
+      'pilares/robotica/autito4.jpg',
+      'pilares/robotica/autito5.jpg'
+    ],
+    listado: [
+      'Sistema robótico',
+      'Aplicación de control',
+      'Control Bluetooth',
+      'Modo automático'
+    ]
+  },
+
   {
     id: 'ciencias-naturales',
-    nombre: 'Ciencias Naturales',
-    descripcion: 'Sistema Solar, Mundo de los Bichos, Dinosaurios y futuros contenidos.'
-  },
-  {
-    id: 'historia',
-    nombre: 'Historia',
-    descripcion: 'Monedas y otros contenidos históricos.'
-  },
-  {
-    id: 'naves',
-    nombre: 'Naves',
-    descripcion: 'Cohetes y naves espaciales.'
-  },
-  {
-    id: 'autos',
-    nombre: 'Autos',
-    descripcion: 'Libros y experiencias educativas relacionadas con vehículos.'
+    slug: 'ciencias-naturales',
+    pilarId: 'realidad-aumentada',
+    titulo: 'Ciencias Naturales',
+    orden: 2,
+    publicada: true,
+    descripcionTarjeta:
+      'Explorá dinosaurios, insectos, criaturas marinas y el sistema solar mediante realidad aumentada.',
+    imagenTarjeta: 'pilares/tarjetaEducación.png',
+    imagenesCarrusel: [
+      'pilares/realidadAumentada/libros/portadaDinosaurios.png',
+      'pilares/realidadAumentada/libros/portadaDinosaurios2.png',
+      'pilares/realidadAumentada/libros/portadaSistemaSolar.png',
+      'pilares/realidadAumentada/libros/portadaSistemaSolar2.png',
+      'pilares/realidadAumentada/libros/portadaSistemaSolar3.jpg'
+    ],
+    listado: [
+      'Sistema Solar',
+      'Dinosaurios',
+      'Bichos',
+      'Criaturas Oceanicas',
+    ]
   }
 ];
 
-export const ITEMS: Item[] = [
+export const RECURSOS: Recurso[] = [
   {
-    slug: 'sistema-solar',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'ciencias-naturales',
-    titulo: 'Sistema Solar',
-    resumen: 'Libro educativo de realidad aumentada para explorar el Sistema Solar.',
-    estado: 'disponible',
-    imagen: 'pilares/realidadAumentada/libros/libroSistemaSolar.png'
-  },
-  {
-    slug: 'mundo-de-los-bichos',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'ciencias-naturales',
-    titulo: 'Mundo de los Bichos',
-    resumen: 'Libro educativo para conocer los insectos mediante realidad aumentada.',
-    estado: 'disponible',
-    imagen: 'pilares/realidadAumentada/libros/libroBichos.png'
-  },
-  {
-    slug: 'dinosaurios',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'ciencias-naturales',
-    titulo: 'Dinosaurios',
-    resumen: 'Libro educativo para explorar el mundo de los dinosaurios.',
-    estado: 'disponible',
-    imagen: 'pilares/realidadAumentada/libros/libroDinosaurios.png'
-  },
-  {
-    slug: 'mundo-marino',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'ciencias-naturales',
-    titulo: 'Mundo Marino',
-    resumen: 'Nuevos contenidos sobre peces en desarrollo.',
-    estado: 'en-desarrollo'
-  },
-  {
-    slug: 'cuerpo-humano',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'ciencias-naturales',
-    titulo: 'Cuerpo Humano',
-    resumen: 'Contenido educativo previsto para el futuro.',
-    estado: 'proximamente'
-  },
-  {
-    slug: 'monedas',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'historia',
-    titulo: 'Monedas',
-    resumen: 'Contenido histórico previsto para el futuro.',
-    estado: 'proximamente'
-  },
-  {
-    slug: 'cohetes-y-naves',
-    tipo: 'libro',
-    pilar: 'realidad-aumentada',
-    categoria: 'naves',
-    titulo: 'Cohetes y naves espaciales',
-    resumen: 'Contenido educativo previsto para el futuro.',
-    estado: 'proximamente'
-  },
-  {
-    slug: 'autito-robotico',
-    tipo: 'robot',
-    pilar: 'robotica-arduino',
+    id: 'autito-robotico',
+    coleccionId: 'robotica',
+    tipo: 'proyecto',
     titulo: 'Autito robótico',
-    resumen: 'Sistema robótico controlado desde una aplicación móvil.',
-    estado: 'disponible',
+    entrega: 'Proyecto 1',
     imagen: 'pilares/robotica/sistemaRobotico/autito.png',
-    video: 'pilares/robotica/video.mp4'
+    estado: 'disponible',
+    orden: 1
+  },
+
+  {
+    id: 'sistema-solar',
+    coleccionId: 'ciencias-naturales',
+    tipo: 'libro',
+    titulo: 'Sistema Solar',
+    entrega: 'Entrega 1',
+    imagen: 'pilares/realidadAumentada/libros/libroSistemaSolar.png',
+    estado: 'disponible',
+    orden: 1
   },
   {
-    slug: 'autito-basico',
-    tipo: 'robot',
-    pilar: 'robotica-arduino',
-    titulo: 'Autito robótico básico',
-    resumen: 'Versión básica del proyecto robótico.',
-    estado: 'proximamente'
+    id: 'dinosaurios',
+    coleccionId: 'ciencias-naturales',
+    tipo: 'libro',
+    titulo: 'Dinosaurios',
+    entrega: 'Entrega 2',
+    imagen: 'pilares/realidadAumentada/libros/libroDinosaurios.png',
+    estado: 'disponible',
+    orden: 2
   },
   {
-    slug: 'robot-con-ojitos',
-    tipo: 'robot',
-    pilar: 'robotica-arduino',
-    titulo: 'Robot con ojitos',
-    resumen: 'Kit en desarrollo para armar, explorar e interactuar.',
-    estado: 'en-desarrollo'
+    id: 'bichos',
+    coleccionId: 'ciencias-naturales',
+    tipo: 'libro',
+    titulo: 'Bichos',
+    entrega: 'Entrega 3',
+    imagen: 'pilares/realidadAumentada/libros/libroBichos.png',
+    estado: 'disponible',
+    orden: 3
+  },
+  
+  {
+    id: 'criaturas-oceanicas',
+    coleccionId: 'ciencias-naturales',
+    tipo: 'libro',
+    titulo: 'Criaturas Oceánicas',
+    entrega: 'Próximamente',
+    imagen: '',
+    estado: 'en-desarrollo',
+    orden: 4
   }
+
 ];
-
-export function itemsDePilar(pilar: PilarId): Item[] {
-  return ITEMS.filter(item => item.pilar === pilar);
-}
-
-export function itemsDeCategoria(categoria: CategoriaId): Item[] {
-  return ITEMS.filter(item => item.categoria === categoria);
-}
-
-export function getItem(slug: string): Item | undefined {
-  return ITEMS.find(item => item.slug === slug);
-}

@@ -581,7 +581,7 @@ html {
 
 .funcionamiento {
 
-  padding: 45px 40px;
+  padding: 30px 40px;
 }
 
 .funcionamiento h3,
@@ -638,7 +638,7 @@ html {
 
 .video-demo {
 
-  padding: 60px 20px;
+  padding: 30px 40px;
 }
 
 .video-container { 
@@ -661,7 +661,7 @@ html {
 
 .entregas {
 
-  padding: 45px 30px;
+  padding: 30px 30px;
 
   text-align: center;
 }
@@ -1351,4 +1351,62 @@ html {
     padding:18px;
   }
 
+}
+
+/* ========================================================= */
+/* ============ ESTADO Y PORTADA DE LOS RECURSOS =========== */
+/* ========================================================= */
+
+.portada-pendiente {
+  width: 100%;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-sizing: border-box;
+  border: 1px dashed #c8c8c8;
+  border-radius: 10px;
+  background: #f7f7f7;
+  color: #777;
+}
+
+.portada-pendiente i {
+  font-size: 42px;
+}
+
+.portada-pendiente span {
+  font-size: 14px;
+}
+
+.estado-recurso {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.estado-disponible {
+  background: #e4f5e9;
+  color: #237442;
+}
+
+.estado-en-desarrollo {
+  background: #fff0d5;
+  color: #8a5700;
+}
+
+.estado-proximamente {
+  background: #e8edf5;
+  color: #385477;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 768px) {
+  .portada-pendiente {
+    height: 260px;
+  }
 }

@@ -11,53 +11,26 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 
-export type PilarUI = {
-
-  titulo: string;
-
-  // HERO
-  heroImg: string;
-  heroTitulo: string;
-  heroDescripcion: string;
-
-  // COLECCIÓN
-  coleccionTitulo: string;
-  coleccionTextos: string[];
-  coleccionExtraTextos?: string[];
-
-  // FUNCIONAMIENTO
-  funcionamientoTitulo?: string;
-  funcionamientoPasos?: string[];
-  requisitosTexto?: string;
-  descargas?: {
-    nombre: string;
-    icono: string;
-    link: string;
-  }[];
+import { ColeccionUI } from './coleccion-vista';
 
 
-  // VIDEO
-  videoUrl?: string;
-
-  // ENTREGAS
-  entregasTitulo?: string;
-};
 
 @Component({
   selector: 'app-colecciones',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './colecciones.html',
-  styleUrls: ['../colecciones.css']
+  styleUrls: ['./colecciones.css']
 })
 export class ColeccionComponent implements OnInit, OnChanges, OnDestroy {
 
-  @Input({ required: true }) ui!: PilarUI;
+  @Input({ required: true }) ui!: ColeccionUI;
 
   @Input() items: {
     nombre: string;
     entrega?: string;
     imagen?: string;
+    estado: 'disponible' | 'en-desarrollo' | 'proximamente';
   }[] = [];
 
   @Input() lista: { nombre: string }[] = [];

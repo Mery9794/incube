@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { BannerComponent } from '../../components/banner/banner';
+import { CatalogoService } from '../../services/catalogo.service';
 
 @Component({
   selector: 'app-home',
@@ -14,23 +17,20 @@ export class HomeComponent {
 
   constructor(private router: Router) { }
 
-  colecciones = [
+  private catalogo = inject(CatalogoService);
 
-    {
-      nombre: 'Robótica Aplicada',
-      descripcion: 'Construí, programá y explorá mediante experiencias con Arduino, electrónica y robótica educativa.',
-      ruta: 'robotica',
-      fondo: 'pilares/tarjetaArduino.png'
-    },
-
-    {
-      nombre: 'Ciencias Naturales',
-      descripcion: 'Explorá dinosaurios, insectos, criaturas marinas y el sistema solar mediante realidad aumentada.',
-      ruta: 'ciencias-naturales',
-      fondo: 'pilares/tarjetaEducación.png'
-    }
-
-  ];
+  // Tarjetas de la home: salen del catálogo, ordenadas
+  colecciones = toSignal(
+    this.catalogo.getColeccionesPublicadas().pipe(
+      map(colecciones => colecciones.map(c => ({
+        nombre: c.titulo,
+        descripcion: c.descripcionTarjeta,
+        ruta: c.slug,
+        fondo: c.imagenTarjeta
+      })))
+    ),
+    { initialValue: [] }
+  );
 
   preguntas = [
 
