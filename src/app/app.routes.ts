@@ -6,6 +6,9 @@ import { AtencionClienteComponent } from './pages/atencion-cliente/atencion-clie
 import { ContactanosComponent } from './pages/contactanos/contactanos';
 import { ColeccionPageComponent } from './features/colecciones/coleccion-page/coleccion-page';
 
+import { Login } from './features/admin/login/login';
+import { Dashboard }  from './features/admin/dashboard/dashboard';
+
 export const routes: Routes = [
 
   // HOME
@@ -21,8 +24,12 @@ export const routes: Routes = [
   // COLECCIONES (una sola ruta para todas: /coleccion/ciencias-naturales, /coleccion/robotica, …)
   { path: 'coleccion/:slug', component: ColeccionPageComponent, data: { hideNavbar: true } },
 
- 
+
   { path: 'proyectos/:tipo/:id', redirectTo: 'coleccion/ciencias-naturales' },
+
+  // ADMINISTRACIÓN
+  { path: 'admin/login', component: Login },
+  { path: 'admin/dashboard', component: Dashboard },
 
   // REDIRECCIÓN
   { path: '**', redirectTo: '' }

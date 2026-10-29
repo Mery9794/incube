@@ -16,7 +16,7 @@ import { FloatingActionsComponent } from "./components/floating-actions/floating
     FooterComponent,
     NavbarComponent,
     FloatingActionsComponent
-],
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -47,4 +47,7 @@ export class App {
     return this.router.url.includes('/pilar/');
   }
 
+  esAdmin(): boolean {
+    return this.router.url.startsWith('/admin');
+  }
 }

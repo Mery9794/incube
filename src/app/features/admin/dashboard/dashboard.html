@@ -1,0 +1,737 @@
+<div class="admin-layout">
+
+    <aside class="sidebar">
+        <a class="brand" routerLink="/" aria-label="Volver a INCUBÉ">
+            <span class="brand-mark">I</span>
+            <span class="brand-text">
+                <strong>INCUBÉ</strong>
+                <small>Administración</small>
+            </span>
+        </a>
+
+        <div class="menu-heading">MENÚ PRINCIPAL</div>
+
+        <nav class="side-menu" aria-label="Menú de administración">
+            <button *ngFor="let item of menu" type="button" class="menu-item" [class.active]="seccionActiva === item.id"
+                [attr.aria-current]="seccionActiva === item.id ? 'page' : null" (click)="seleccionarSeccion(item.id)">
+                <span class="menu-icon" aria-hidden="true">{{ item.icono }}</span>
+                <span>{{ item.nombre }}</span>
+                <span class="active-mark" *ngIf="seccionActiva === item.id"></span>
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-avatar">A</div>
+            <div class="admin-info">
+                <strong>Administrador</strong>
+                <small>Panel privado</small>
+            </div>
+            <span class="status-dot" title="Sesión aún no conectada"></span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div class="breadcrumb">
+                <span>INCUBÉ</span>
+                <span class="breadcrumb-separator">/</span>
+                <strong>{{ tituloSeccion }}</strong>
+            </div>
+
+            <a class="view-site" routerLink="/">
+                <span aria-hidden="true">↗</span>
+                Ver sitio web
+            </a>
+        </header>
+
+        <div class="page-content">
+
+            <ng-container *ngIf="seccionActiva === 'inicio'">
+                <section class="welcome">
+                    <div>
+                        <span class="eyebrow">CENTRO DE CONTROL</span>
+                        <h1>¡Hola, administrador!</h1>
+                        <p>Gestioná los contenidos educativos de INCUBÉ desde un solo lugar.</p>
+                    </div>
+                    <div class="welcome-decoration" aria-hidden="true">I</div>
+                </section>
+
+
+                <section class="stats-grid" aria-label="Resumen del catálogo">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon green">▤</span>
+                            <span class="stat-label">CATÁLOGO</span>
+                        </div>
+                        <strong class="stat-value">{{ colecciones.length }}</strong>
+                        <span class="stat-description">Colecciones registradas</span>
+                        <span class="stat-note">Colecciones publicadas: {{ colecciones.length }}</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon orange">▣</span>
+                            <span class="stat-label">CONTENIDO</span>
+                        </div>
+                        <strong class="stat-value">{{ recursos.length }}</strong>
+                        <span class="stat-description">Libros y proyectos</span>
+                        <span class="stat-note">{{ totalLibros }} libros · {{ totalProyectos }} proyectos</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon blue">▧</span>
+                            <span class="stat-label">MULTIMEDIA</span>
+                        </div>
+                        <strong class="stat-value">{{ totalImagenes }}</strong>
+                        <span class="stat-description">Imágenes referenciadas</span>
+                        <span class="stat-note">Según las rutas guardadas en el catálogo</span>
+                    </article>
+                </section>
+
+
+                <section class="content-grid">
+                    <article class="panel quick-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Accesos rápidos</h2>
+                                <p>Elegí qué querés administrar.</p>
+                            </div>
+                        </div>
+
+                        <button class="quick-action" type="button" (click)="seleccionarSeccion('colecciones')">
+                            <span class="quick-icon green">▤</span>
+                            <span class="quick-copy">
+                                <strong>Administrar colecciones</strong>
+                                <small>Crear, editar y organizar colecciones.</small>
+                            </span>
+                            <span class="arrow">→</span>
+                        </button>
+
+                        <button class="quick-action" type="button" (click)="seleccionarSeccion('recursos')">
+                            <span class="quick-icon orange">▣</span>
+                            <span class="quick-copy">
+                                <strong>Libros y proyectos</strong>
+                                <small>Gestionar recursos y sus estados.</small>
+                            </span>
+                            <span class="arrow">→</span>
+                        </button>
+
+                        <button class="quick-action" type="button" (click)="seleccionarSeccion('archivos')">
+                            <span class="quick-icon blue">▧</span>
+                            <span class="quick-copy">
+                                <strong>Imágenes y archivos</strong>
+                                <small>Preparar la gestión de portadas y fotos.</small>
+                            </span>
+                            <span class="arrow">→</span>
+                        </button>
+                    </article>
+
+                    <article class="panel status-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Estado del proyecto</h2>
+                                <p>Preparación del administrador</p>
+                            </div>
+                            <span class="status-badge">En preparación</span>
+                        </div>
+
+                        <div class="status-row">
+                            <span class="status-indicator completed"></span>
+                            <span>Interfaz del panel</span>
+                            <strong>Diseño</strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span class="status-indicator pending"></span>
+                            <span>Inicio de sesión seguro</span>
+                            <strong>Pendiente</strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span class="status-indicator pending"></span>
+                            <span>Base de datos Firestore</span>
+                            <strong>Pendiente</strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span class="status-indicator pending"></span>
+                            <span>Almacenamiento de imágenes</span>
+                            <strong>Pendiente</strong>
+                        </div>
+
+                        <p class="status-footer">
+                            El catálogo actual sigue funcionando como antes.
+                            Todavía no se modifican datos desde este panel.
+                        </p>
+                    </article>
+                </section>
+            </ng-container>
+
+
+            <section *ngIf="seccionActiva === 'colecciones'" class="admin-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CATÁLOGO EDUCATIVO</span>
+                        <h1>Colecciones</h1>
+                        <p>Administrá las colecciones educativas de INCUBÉ.</p>
+                    </div>
+
+                    <span class="section-counter">
+                        {{ colecciones.length }} colecciones
+                    </span>
+                </div>
+
+                <div class="collections-grid">
+                    <article class="collection-card" *ngFor="let coleccion of colecciones">
+                        <div class="collection-image">
+                            <img [src]="coleccion.imagenTarjeta" [alt]="'Portada de ' + coleccion.titulo"
+                                *ngIf="coleccion.imagenTarjeta; else sinImagen" />
+
+                            <ng-template #sinImagen>
+                                <div class="no-image">Sin imagen</div>
+                            </ng-template>
+                        </div>
+
+                        <div class="collection-info">
+                            <div class="collection-meta">
+                                <span class="collection-status" [class.unpublished]="!coleccion.publicada">
+                                    {{ coleccion.publicada ? 'Publicada' : 'Borrador' }}
+                                </span>
+
+                                <span class="collection-order">
+                                    Orden {{ coleccion.orden }}
+                                </span>
+                            </div>
+
+                            <h2>{{ coleccion.titulo }}</h2>
+                            <p>{{ coleccion.descripcionTarjeta }}</p>
+
+                            <div class="collection-footer">
+                                <span>
+                                    {{
+                                    recursos.filter(r => r.coleccionId === coleccion.id).length
+                                    }}
+                                    recursos
+                                </span>
+
+                                <button type="button" class="edit-button" disabled
+                                    title="La edición se habilitará en un paso posterior">
+                                    Editar próximamente
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <p class="section-help">
+                    En esta primera versión podés consultar las colecciones existentes.
+                    Después agregaremos las funciones para crear, editar y eliminar.
+                </p>
+
+                <button class="back-button" type="button" (click)="seleccionarSeccion('inicio')">
+                    ← Volver al inicio del panel
+                </button>
+            </section>
+
+
+            <section *ngIf="seccionActiva === 'recursos'" class="admin-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CATÁLOGO EDUCATIVO</span>
+                        <h1>Libros y proyectos</h1>
+                        <p>Consultá los recursos educativos registrados en INCUBÉ.</p>
+                    </div>
+
+                    <span class="section-counter">
+                        {{ recursos.length }} recursos
+                    </span>
+                </div>
+
+
+                <div class="resource-collections">
+
+                    <section class="resource-collection-group" *ngFor="let coleccion of colecciones">
+
+                        <ng-container *ngIf="getCantidadRecursos(coleccion.id) > 0">
+
+                            <header class="resource-group-heading">
+                                <div>
+                                    <span class="eyebrow">
+                                        {{ coleccion.pilarId === 'realidad-aumentada'
+                                        ? 'REALIDAD AUMENTADA'
+                                        : 'ROBÓTICA APLICADA' }}
+                                    </span>
+
+                                    <h2>{{ coleccion.titulo }}</h2>
+
+                                    <p>{{ getCantidadRecursos(coleccion.id) }} recursos en esta colección</p>
+                                </div>
+
+                                <a class="view-collection-button" [routerLink]="['/coleccion', coleccion.slug]">
+                                    Ver colección <span aria-hidden="true">↗</span>
+                                </a>
+                            </header>
+
+                            <div class="resources-list">
+                                <article class="resource-card" *ngFor="let recurso of recursos"
+                                    [hidden]="recurso.coleccionId !== coleccion.id">
+
+                                    <div class="resource-image">
+                                        <img *ngIf="recurso.imagen; else recursoSinImagen" [src]="recurso.imagen"
+                                            [alt]="recurso.titulo" />
+
+                                        <ng-template #recursoSinImagen>
+                                            <div class="no-image">Sin portada</div>
+                                        </ng-template>
+                                    </div>
+
+                                    <div class="resource-info">
+                                        <div class="resource-badges">
+                                            <span class="resource-type">
+                                                {{ recurso.tipo === 'libro' ? 'Libro' : 'Proyecto' }}
+                                            </span>
+
+                                            <span class="resource-status"
+                                                [class.status-development]="recurso.estado === 'en-desarrollo'"
+                                                [class.status-soon]="recurso.estado === 'proximamente'">
+                                                {{ recurso.estado === 'disponible'
+                                                ? 'Disponible'
+                                                : recurso.estado === 'en-desarrollo'
+                                                ? 'En desarrollo'
+                                                : 'Próximamente' }}
+                                            </span>
+                                        </div>
+
+                                        <h3>{{ recurso.titulo }}</h3>
+
+                                        <p class="resource-delivery">
+                                            Entrega: {{ recurso.entrega || 'Sin entrega asignada' }}
+                                        </p>
+                                    </div>
+
+                                    <div class="resource-actions">
+                                        <button type="button" class="edit-button" disabled>
+                                            Editar próximamente
+                                        </button>
+                                    </div>
+
+                                </article>
+                            </div>
+
+                        </ng-container>
+                    </section>
+
+                </div>
+
+
+                <p class="section-help">
+                    Los recursos se leen del catálogo actual. La edición y los cambios
+                    de estado se habilitarán en una etapa posterior.
+                </p>
+
+                <button class="back-button" type="button" (click)="seleccionarSeccion('inicio')">
+                    ← Volver al inicio del panel
+                </button>
+            </section>
+
+            <section *ngIf="seccionActiva === 'archivos'" class="admin-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">BIBLIOTECA MULTIMEDIA</span>
+                        <h1>Imágenes y archivos</h1>
+                        <p>Consultá y editá las imágenes de las colecciones y recursos de INCUBÉ.</p>
+                    </div>
+
+                    <span class="section-counter">{{ totalImagenes }} imágenes</span>
+                </div>
+
+                <div class="media-grid">
+
+                    <!-- Imágenes de las colecciones -->
+                    <ng-container *ngFor="let coleccion of colecciones">
+
+                        <!-- Imagen de la tarjeta -->
+                        <article class="media-card">
+                            <div class="media-preview">
+                                <img *ngIf="imagenPrevisualizaciones['coleccion-' + coleccion.id + '-tarjeta'] || coleccion.imagenTarjeta; else sinTarjeta"
+                                    [src]="imagenPrevisualizaciones['coleccion-' + coleccion.id + '-tarjeta'] || coleccion.imagenTarjeta"
+                                    [alt]="coleccion.titulo">
+
+                                <ng-template #sinTarjeta>
+                                    <div class="media-empty">
+                                        <span>▧</span>
+                                        <strong>Imagen no subida</strong>
+                                    </div>
+                                </ng-template>
+
+                                <button type="button" class="media-edit-button" (click)="archivoTarjeta.click()"
+                                    title="Agregar o cambiar imagen">
+                                    ✎
+                                </button>
+
+                                <input #archivoTarjeta type="file" accept="image/*" hidden
+                                    (change)="previsualizarImagen($event, 'coleccion-' + coleccion.id + '-tarjeta')">
+                            </div>
+
+                            <div class="media-info">
+                                <span class="media-type">Imagen de colección</span>
+                                <h2>{{ coleccion.titulo }}</h2>
+                                <p>{{ coleccion.imagenTarjeta || 'Imagen no subida' }}</p>
+                                <span class="media-edit-hint">
+                                    El lápiz permite elegir una imagen y ver una vista previa.
+                                </span>
+                            </div>
+                        </article>
+
+                        <!-- Imágenes del carrusel -->
+                        <article class="media-card" *ngFor="let imagen of coleccion.imagenesCarrusel; let i = index">
+
+                            <div class="media-preview">
+                                <img *ngIf="imagenPrevisualizaciones['carrusel-' + coleccion.id + '-' + i] || imagen; else sinImagenCarrusel"
+                                    [src]="imagenPrevisualizaciones['carrusel-' + coleccion.id + '-' + i] || imagen"
+                                    [alt]="'Imagen de ' + coleccion.titulo">
+
+                                <ng-template #sinImagenCarrusel>
+                                    <div class="media-empty">
+                                        <span>▧</span>
+                                        <strong>Imagen no subida</strong>
+                                    </div>
+                                </ng-template>
+
+                                <button type="button" class="media-edit-button" (click)="archivoCarrusel.click()"
+                                    title="Agregar o cambiar imagen">
+                                    ✎
+                                </button>
+
+                                <input #archivoCarrusel type="file" accept="image/*" hidden
+                                    (change)="previsualizarImagen($event, 'carrusel-' + coleccion.id + '-' + i)">
+                            </div>
+
+                            <div class="media-info">
+                                <span class="media-type">Imagen de carrusel</span>
+                                <h2>{{ coleccion.titulo }} · Imagen {{ i + 1 }}</h2>
+                                <p>{{ imagen || 'Imagen no subida' }}</p>
+                                <span class="media-edit-hint">
+                                    El lápiz permite elegir una imagen y ver una vista previa.
+                                </span>
+                            </div>
+                        </article>
+
+                    </ng-container>
+
+                    <!-- Imágenes de libros y proyectos -->
+                    <ng-container *ngFor="let recurso of recursos">
+                        <article class="media-card">
+                            <div class="media-preview">
+                                <img *ngIf="imagenPrevisualizaciones['recurso-' + recurso.id] || recurso.imagen; else sinImagenRecurso"
+                                    [src]="imagenPrevisualizaciones['recurso-' + recurso.id] || recurso.imagen"
+                                    [alt]="recurso.titulo">
+
+                                <ng-template #sinImagenRecurso>
+                                    <div class="media-empty">
+                                        <span>▧</span>
+                                        <strong>Imagen no subida</strong>
+                                    </div>
+                                </ng-template>
+
+                                <button type="button" class="media-edit-button" (click)="archivoRecurso.click()"
+                                    title="Agregar o cambiar imagen">
+                                    ✎
+                                </button>
+
+                                <input #archivoRecurso type="file" accept="image/*" hidden
+                                    (change)="previsualizarImagen($event, 'recurso-' + recurso.id)">
+                            </div>
+
+                            <div class="media-info">
+                                <span class="media-type">
+                                    {{ recurso.tipo === 'libro' ? 'Portada de libro' : 'Imagen de proyecto' }}
+                                </span>
+                                <h2>{{ recurso.titulo }}</h2>
+                                <p>{{ recurso.imagen || 'Imagen no subida' }}</p>
+                                <span class="media-edit-hint">
+                                    El lápiz permite elegir una imagen y ver una vista previa.
+                                </span>
+                            </div>
+                        </article>
+                    </ng-container>
+
+                </div>
+
+                <p class="section-help">
+                    Podés seleccionar una imagen nueva con el lápiz y ver su vista previa.
+                    El cambio todavía no se guarda de forma permanente.
+                </p>
+
+                <button class="back-button" type="button" (click)="seleccionarSeccion('inicio')">
+                    ← Volver al inicio del panel
+                </button>
+            </section>
+
+
+<!-- COLORES Y DISEÑO -->
+<section *ngIf="seccionActiva === 'diseno'" class="admin-section">
+
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">IDENTIDAD VISUAL</span>
+      <h1>Colores y diseño</h1>
+      <p>Personalizá la apariencia de tu página web.</p>
+    </div>
+  </div>
+
+  <div class="design-layout">
+
+    <!-- Configuración de colores -->
+    <article class="admin-card design-settings">
+      <h2>Paleta de colores</h2>
+      <p>Elegí los colores principales de INCUBÉ.</p>
+
+      <div class="color-field">
+        <label for="colorPrincipal">Color principal</label>
+        <div class="color-control">
+          <input
+            id="colorPrincipal"
+            type="color"
+            [(ngModel)]="colorPrincipal">
+          <span>{{ colorPrincipal }}</span>
+        </div>
+      </div>
+
+      <div class="color-field">
+        <label for="colorSecundario">Color secundario</label>
+        <div class="color-control">
+          <input
+            id="colorSecundario"
+            type="color"
+            [(ngModel)]="colorSecundario">
+          <span>{{ colorSecundario }}</span>
+        </div>
+      </div>
+
+      <div class="color-field">
+        <label for="colorAcento">Color de acento</label>
+        <div class="color-control">
+          <input
+            id="colorAcento"
+            type="color"
+            [(ngModel)]="colorAcento">
+          <span>{{ colorAcento }}</span>
+        </div>
+      </div>
+
+      <div class="color-field">
+        <label for="colorFondo">Fondo de página</label>
+        <div class="color-control">
+          <input
+            id="colorFondo"
+            type="color"
+            [(ngModel)]="colorFondo">
+          <span>{{ colorFondo }}</span>
+        </div>
+      </div>
+
+      <div class="color-field">
+        <label for="fuenteSitio">Tipografía</label>
+        <select id="fuenteSitio" [(ngModel)]="fuenteSitio">
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+        </select>
+      </div>
+
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="restablecerDiseno()">
+        Restablecer valores
+      </button>
+    </article>
+
+    <!-- Vista previa -->
+    <article class="admin-card design-preview">
+      <h2>Vista previa</h2>
+      <p>Así se vería una sección con los colores elegidos.</p>
+
+      <div
+        class="preview-website"
+        [style.background-color]="colorFondo"
+        [style.font-family]="fuenteSitio">
+
+        <header
+          class="preview-header"
+          [style.background-color]="colorPrincipal">
+          <strong>INCUBÉ</strong>
+          <span>Inicio · Colecciones</span>
+        </header>
+
+        <div class="preview-content">
+          <span
+            class="preview-label"
+            [style.color]="colorPrincipal">
+            APRENDER CREANDO
+          </span>
+
+          <h3 [style.color]="colorPrincipal">
+            Explorá un mundo de posibilidades
+          </h3>
+
+          <p>
+            Descubrí proyectos educativos para aprender,
+            experimentar e imaginar.
+          </p>
+
+          <button
+            type="button"
+            [style.background-color]="colorAcento">
+            Conocer más
+          </button>
+
+          <div
+            class="preview-secondary"
+            [style.background-color]="colorSecundario">
+            Un espacio para aprender y crear.
+          </div>
+        </div>
+      </div>
+
+      <p class="preview-note">
+        Esta vista previa es una demostración. Los colores todavía
+        no se aplican al resto de la página pública.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- CONFIGURACIÓN -->
+<section
+  *ngIf="seccionActiva === 'configuracion'"
+  class="admin-section">
+
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">AJUSTES GENERALES</span>
+      <h1>Configuración</h1>
+      <p>Administrá la información general de INCUBÉ.</p>
+    </div>
+  </div>
+
+  <!-- Información del sitio -->
+  <article class="admin-card config-card">
+    <div class="config-title">
+      <span class="config-icon">◎</span>
+      <div>
+        <h2>Información del sitio</h2>
+        <p>Datos generales que identifican tu proyecto.</p>
+      </div>
+    </div>
+
+    <div class="config-field">
+      <label for="nombreSitio">Nombre del sitio</label>
+      <input
+        id="nombreSitio"
+        type="text"
+        [(ngModel)]="nombreSitio"
+        placeholder="INCUBÉ">
+    </div>
+
+    <div class="config-field">
+      <label for="descripcionSitio">Descripción</label>
+      <textarea
+        id="descripcionSitio"
+        [(ngModel)]="descripcionSitio"
+        rows="3"
+        placeholder="Descripción de INCUBÉ"></textarea>
+    </div>
+
+    <div class="config-field">
+      <label for="emailContacto">Correo de contacto</label>
+      <input
+        id="emailContacto"
+        type="email"
+        [(ngModel)]="emailContacto"
+        placeholder="contacto@ejemplo.com">
+    </div>
+  </article>
+
+  <!-- Visibilidad del sitio -->
+  <article class="admin-card config-card">
+    <div class="config-title">
+      <span class="config-icon">◉</span>
+      <div>
+        <h2>Visibilidad</h2>
+        <p>Controlá el estado general de publicación.</p>
+      </div>
+    </div>
+
+    <label class="config-toggle">
+      <span>
+        <strong>Sitio publicado</strong>
+        <small>Indica si el sitio debería estar publicado.</small>
+      </span>
+
+      <input
+        type="checkbox"
+        [(ngModel)]="sitioPublicado">
+    </label>
+
+    <p class="config-warning">
+      Este control es solamente visual por ahora.
+      No publica ni oculta realmente el sitio web.
+    </p>
+  </article>
+
+  <!-- Acceso y almacenamiento -->
+  <article class="admin-card config-card">
+    <div class="config-title">
+      <span class="config-icon">⚙</span>
+      <div>
+        <h2>Acceso y almacenamiento</h2>
+        <p>Estado de las funciones administrativas.</p>
+      </div>
+    </div>
+
+    <div class="config-status">
+      <span>Autenticación</span>
+      <span class="status-pending">Pendiente de conectar</span>
+    </div>
+
+    <div class="config-status">
+      <span>Base de datos</span>
+      <span class="status-pending">Firebase pendiente</span>
+    </div>
+
+    <div class="config-status">
+      <span>Almacenamiento de imágenes</span>
+      <span class="status-pending">Firebase pendiente</span>
+    </div>
+  </article>
+
+  <div class="config-actions">
+    <button
+      type="button"
+      class="primary-button"
+      (click)="guardarConfiguracionLocal()">
+      Guardar ajustes
+    </button>
+
+    <p *ngIf="mensajeConfiguracion" class="config-message">
+      {{ mensajeConfiguracion }}
+    </p>
+  </div>
+
+</section>
+
+            <footer class="page-footer">
+                <span>INCUBÉ · Panel de administración</span>
+                <span>Plataforma educativa</span>
+            </footer>
+
+        </div>
+    </main>
+</div>

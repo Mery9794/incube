@@ -1,7 +1,8 @@
-<app-navbar *ngIf="!hideNavbar()"></app-navbar>
+
+<app-navbar *ngIf="!hideNavbar() && !esAdmin()"></app-navbar>
 
 <router-outlet></router-outlet>
 
-<app-footer [simple]="esPilar()"></app-footer>
+<app-footer *ngIf="!esAdmin()" [simple]="esPilar()"></app-footer>
 
-<app-floating-actions></app-floating-actions>
+<app-floating-actions *ngIf="!esAdmin()"></app-floating-actions>

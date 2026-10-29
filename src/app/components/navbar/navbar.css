@@ -388,3 +388,26 @@
   }
 
 }
+
+
+
+/* Acceso al administrador */
+.admin-login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.admin-login-icon:hover {
+  color: #286844;
+  transform: scale(1.1);
+}
+
+.admin-login-icon:focus-visible {
+  outline: 2px solid #286844;
+  outline-offset: 4px;
+  border-radius: 50%;
+}
