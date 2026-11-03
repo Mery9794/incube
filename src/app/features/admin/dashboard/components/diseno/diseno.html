@@ -1,0 +1,121 @@
+
+<section class="admin-section">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">IDENTIDAD VISUAL</span>
+            <h1>Colores y diseño</h1>
+            <p>Personalizá la apariencia de tu página web.</p>
+        </div>
+    </div>
+
+    <div class="design-layout">
+
+        <!-- Configuración de colores -->
+        <article class="admin-card design-settings">
+            <h2>Paleta de colores</h2>
+            <p>Elegí los colores principales de inCUBë.</p>
+
+            <div class="color-field">
+                <label for="colorPrincipal">Color principal</label>
+                <div class="color-control">
+                    <input id="colorPrincipal" type="color" [(ngModel)]="colorPrincipal">
+                    <span>{{ colorPrincipal }}</span>
+                </div>
+            </div>
+
+            <div class="color-field">
+                <label for="colorSecundario">Color secundario</label>
+                <div class="color-control">
+                    <input id="colorSecundario" type="color" [(ngModel)]="colorSecundario">
+                    <span>{{ colorSecundario }}</span>
+                </div>
+            </div>
+
+            <div class="color-field">
+                <label for="colorAcento">Color de acento</label>
+                <div class="color-control">
+                    <input id="colorAcento" type="color" [(ngModel)]="colorAcento">
+                    <span>{{ colorAcento }}</span>
+                </div>
+            </div>
+
+            <div class="color-field">
+                <label for="colorFondo">Fondo de página</label>
+                <div class="color-control">
+                    <input id="colorFondo" type="color" [(ngModel)]="colorFondo">
+                    <span>{{ colorFondo }}</span>
+                </div>
+            </div>
+
+            <div class="color-field">
+                <label for="fuenteSitio">Tipografía</label>
+                <select id="fuenteSitio" [(ngModel)]="fuenteSitio">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Verdana, sans-serif">Verdana</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                </select>
+            </div>
+
+            <div class="design-actions">
+                <button type="button" class="secondary-button" (click)="restablecerDiseno()">
+                    Restablecer valores
+                </button>
+
+                <button type="button" class="primary-button" (click)="guardarDisenoLocal()">
+                    Guardar diseño
+                </button>
+            </div>
+
+            <p *ngIf="mensajeDiseno" class="config-message" role="status">
+                {{ mensajeDiseno }}
+            </p>
+        </article>
+
+        <!-- Vista previa -->
+        <article class="admin-card design-preview">
+            <h2>Vista previa</h2>
+            <p>Así se vería una sección con los colores elegidos.</p>
+
+            <div class="preview-website"
+                [style.background-color]="colorFondo"
+                [style.font-family]="fuenteSitio">
+
+                <header class="preview-header" [style.background-color]="colorPrincipal">
+                    <strong>inCUBë</strong>
+                    <span>Inicio · Colecciones</span>
+                </header>
+
+                <div class="preview-content">
+                    <span class="preview-label" [style.color]="colorPrincipal">
+                        APRENDER CREANDO
+                    </span>
+
+                    <h3 [style.color]="colorPrincipal">
+                        Explorá un mundo de posibilidades
+                    </h3>
+
+                    <p>
+                        Descubrí proyectos educativos para aprender,
+                        experimentar e imaginar.
+                    </p>
+
+                    <button type="button" [style.background-color]="colorAcento">
+                        Conocer más
+                    </button>
+
+                    <div class="preview-secondary" [style.background-color]="colorSecundario">
+                        Un espacio para aprender y crear.
+                    </div>
+                </div>
+            </div>
+
+            <p class="preview-note">
+                Esta vista previa es una demostración. Los colores todavía
+                no se aplican al resto de la página pública.
+            </p>
+        </article>
+
+    </div>
+</section>

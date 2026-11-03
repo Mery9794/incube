@@ -1,0 +1,115 @@
+
+<section class="admin-section">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">AJUSTES GENERALES</span>
+            <h1>Configuración</h1>
+            <p>Administrá la información general de inCUBë.</p>
+        </div>
+    </div>
+
+    <!-- Información del sitio -->
+    <article class="admin-card config-card">
+        <div class="config-title">
+            <span class="config-icon">◎</span>
+            <div>
+                <h2>Información del sitio</h2>
+                <p>Datos generales que identifican tu proyecto.</p>
+            </div>
+        </div>
+
+        <div class="config-field">
+            <label for="nombreSitio">Nombre del sitio</label>
+            <input
+                id="nombreSitio"
+                type="text"
+                [(ngModel)]="nombreSitio"
+                placeholder="inCUBë">
+        </div>
+
+        <div class="config-field">
+            <label for="descripcionSitio">Descripción</label>
+            <textarea
+                id="descripcionSitio"
+                [(ngModel)]="descripcionSitio"
+                rows="3"
+                placeholder="Descripción de inCUBë">
+            </textarea>
+        </div>
+
+        <div class="config-field">
+            <label for="emailContacto">Correo de contacto</label>
+            <input
+                id="emailContacto"
+                type="email"
+                [(ngModel)]="emailContacto"
+                placeholder="contacto@ejemplo.com">
+        </div>
+    </article>
+
+    <!-- Visibilidad del sitio -->
+    <article class="admin-card config-card">
+        <div class="config-title">
+            <span class="config-icon">◉</span>
+            <div>
+                <h2>Visibilidad</h2>
+                <p>Controlá el estado general de publicación.</p>
+            </div>
+        </div>
+
+        <label class="config-toggle">
+            <span>
+                <strong>Sitio publicado</strong>
+                <small>Indica si el sitio debería estar publicado.</small>
+            </span>
+
+            <input type="checkbox" [(ngModel)]="sitioPublicado">
+        </label>
+
+        <p class="config-warning">
+            Este control es solamente visual por ahora.
+            No publica ni oculta realmente el sitio web.
+        </p>
+    </article>
+
+    <!-- Acceso y almacenamiento -->
+    <article class="admin-card config-card">
+        <div class="config-title">
+            <span class="config-icon">⚙</span>
+            <div>
+                <h2>Acceso y almacenamiento</h2>
+                <p>Estado de las funciones administrativas.</p>
+            </div>
+        </div>
+
+        <div class="config-status">
+            <span>Autenticación</span>
+            <span class="status-pending">Pendiente de conectar</span>
+        </div>
+
+        <div class="config-status">
+            <span>Base de datos</span>
+            <span class="status-pending">Firebase pendiente</span>
+        </div>
+
+        <div class="config-status">
+            <span>Almacenamiento de imágenes</span>
+            <span class="status-pending">Firebase pendiente</span>
+        </div>
+    </article>
+
+    <div class="config-actions">
+        <button
+            type="button"
+            class="primary-button"
+            (click)="guardarConfiguracionLocal()">
+            Guardar ajustes
+        </button>
+
+        <p *ngIf="mensajeConfiguracion" class="config-message">
+            {{ mensajeConfiguracion }}
+        </p>
+    </div>
+
+</section>

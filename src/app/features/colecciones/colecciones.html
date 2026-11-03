@@ -1,10 +1,11 @@
-
 <!-- HEADER -->
 <header class="header" [class.scrolled]="scrolled">
+
   <div class="top-bar">
+
     <div class="logo-container">
-      <a href="#inicio">
-        <img src="logos/logo-incube- blanco.png" class="logo" alt="Logo INCUBE">
+      <a href="#inicio" aria-label="Inicio INCUBÉ">
+        <img src="logos/logo-incube- blanco.png" class="logo" alt="Logo INCUBÉ">
       </a>
     </div>
 
@@ -12,272 +13,416 @@
       <h2>{{ ui.titulo }}</h2>
     </div>
 
-    <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+    <button type="button" class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen"
+      [attr.aria-label]="menuOpen ? 'Cerrar menú' : 'Abrir menú'">
 
+      <i class="fa-solid" [ngClass]="menuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+
+    </button>
     <div class="redes">
-      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="icon">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="icon" aria-label="Facebook">
         <i class="fa-brands fa-facebook-f"></i>
       </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="icon">
+
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="icon" aria-label="Instagram">
         <i class="fa-brands fa-instagram"></i>
       </a>
     </div>
+
   </div>
 
   <nav class="menu">
+
     <div class="menu-links" [class.active]="menuOpen">
       <a (click)="scrollTo('coleccion')">Colección</a>
+
       <a *ngIf="ui.funcionamientoPasos?.length" (click)="scrollTo('funcionamiento')">
         Funcionamiento
       </a>
+
       <a (click)="scrollTo('contenido')">Contenido</a>
     </div>
 
     <div class="menu-actions" [class.active]="menuOpen">
+
       <button type="button" class="btn-primary" (click)="abrirFormulario('info')">
+        <i class="fa-regular fa-circle-question"></i>
         Solicitar información
       </button>
+
       <button type="button" class="btn-secondary" (click)="abrirFormulario('contacto')">
+        <i class="fa-regular fa-envelope"></i>
         Contactanos
       </button>
+
     </div>
+
   </nav>
+
 </header>
+
 
 <!-- HERO -->
 <section class="hero" id="inicio">
+
   <div class="hero-left">
-    <img [src]="ui.heroImg" alt="Hero">
+    <img [src]="ui.heroImg" [alt]="ui.heroTitulo">
   </div>
 
   <div class="hero-right">
     <div class="hero-card">
+
       <h2>{{ ui.heroTitulo }}</h2>
+
       <p>{{ ui.heroDescripcion }}</p>
+
     </div>
   </div>
+
 </section>
+
 
 <!-- COLECCIÓN -->
 <section class="coleccion-info" id="coleccion">
+
   <div class="coleccion-container">
+
     <div class="coleccion-texto">
+
       <h2>{{ ui.coleccionTitulo }}</h2>
-      <p *ngFor="let t of ui.coleccionTextos">{{ t }}</p>
+
+      <div class="coleccion-descripciones">
+        <p *ngFor="let t of ui.coleccionTextos">
+          {{ t }}
+        </p>
+      </div>
+
     </div>
+
 
     <!-- CARRUSEL -->
     <div class="carousel">
-      <button
-        class="carousel-btn carousel-prev"
-        (click)="anterior()"
+
+      <button type="button" class="carousel-btn carousel-prev" aria-label="Imagen anterior" (click)="anterior()"
         *ngIf="paginas.length > 1">
         ‹
       </button>
 
       <div class="carousel-viewport">
-        <div
-          class="carousel-track"
-          [style.transform]="'translateX(-' + (paginaActual * 100) + '%)'">
+
+        <div class="carousel-track" [style.transform]="'translateX(-' + (paginaActual * 100) + '%)'">
+
           <div class="carousel-page" *ngFor="let pagina of paginas">
-            <img *ngFor="let img of pagina" [src]="img" alt="Imagen colección">
+
+            <img *ngFor="let img of pagina" [src]="img" alt="Imagen de la colección">
+
           </div>
+
         </div>
+
       </div>
 
-      <button
-        class="carousel-btn carousel-next"
-        (click)="siguiente()"
+      <button type="button" class="carousel-btn carousel-next" aria-label="Imagen siguiente" (click)="siguiente()"
         *ngIf="paginas.length > 1">
         ›
       </button>
 
       <div class="carousel-dots" *ngIf="paginas.length > 1">
-        <button
-          *ngFor="let pagina of paginas; let i = index"
-          class="carousel-dot"
-          [class.active]="paginaActual === i"
-          (click)="irAPagina(i)">
+
+        <button type="button" *ngFor="let pagina of paginas; let i = index" class="carousel-dot"
+          [class.active]="paginaActual === i" [attr.aria-label]="'Ir a la página ' + (i + 1)"
+          [attr.aria-current]="paginaActual === i ? 'true' : null" (click)="irAPagina(i)">
         </button>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
+
 
 <!-- EXTRA -->
 <section class="coleccion-extra" *ngIf="ui.coleccionExtraTextos?.length">
+
   <div class="coleccion-extra-container">
-    <p *ngFor="let texto of ui.coleccionExtraTextos">{{ texto }}</p>
+
+    <div class="extra-item" *ngFor="let texto of ui.coleccionExtraTextos; let i = index">
+
+      <div class="extra-icono">
+        <i [ngClass]="
+            i === 0
+              ? 'fa-solid fa-book-open'
+              : i === 1
+                ? 'fa-solid fa-cube'
+                : 'fa-solid fa-users'
+          ">
+        </i>
+      </div>
+
+      <p>{{ texto }}</p>
+
+    </div>
+
   </div>
+
 </section>
 
+
 <!-- FUNCIONAMIENTO -->
-<section class="funcionamiento-completo" id="funcionamiento">
+<section class="funcionamiento-completo" id="funcionamiento"
+  *ngIf="ui.requisitosTexto || ui.funcionamientoPasos?.length || ui.videoUrl">
+
+  <!-- ENCABEZADO -->
   <div class="requisitos-header">
     <h2>Funcionamiento</h2>
   </div>
 
+  <!-- REQUISITOS -->
   <div class="requisitos-texto" *ngIf="ui.requisitosTexto">
     <p>{{ ui.requisitosTexto }}</p>
   </div>
 
+  <!-- PASOS -->
   <section class="funcionamiento" *ngIf="ui.funcionamientoPasos?.length">
-    <h3>¿Cómo funciona?</h3>
 
-    <div class="funcionamiento-grid">
-      <div class="paso" *ngFor="let paso of ui.funcionamientoPasos; let i = index">
-        <span>{{ i + 1 }}</span>
-        <p>{{ paso }}</p>
+    <div class="funcionamiento-container">
+
+      <h3>¿Cómo funciona?</h3>
+
+      <div class="funcionamiento-grid">
+
+        <div class="paso" *ngFor="let paso of ui.funcionamientoPasos; let i = index">
+
+          <div class="paso-icono">
+
+            <span class="paso-numero">{{ i + 1 }}</span>
+
+            <i [ngClass]="
+                i === 0
+                  ? 'fa-solid fa-mobile-screen-button'
+                  : i === 1
+                    ? 'fa-solid fa-cube'
+                    : 'fa-solid fa-book-open'
+              " aria-hidden="true">
+            </i>
+
+          </div>
+
+          <div class="paso-contenido">
+            <h4>Paso {{ i + 1 }}</h4>
+            <p>{{ paso }}</p>
+          </div>
+
+        </div>
+
       </div>
+
     </div>
+
   </section>
 
+  <!-- VIDEO -->
   <section class="video-demo" *ngIf="ui.videoUrl">
+
     <h3>Video demostrativo</h3>
+
     <div class="video-container">
-      <video controls>
+      <video controls preload="metadata">
         <source [src]="ui.videoUrl" type="video/mp4">
+        Tu navegador no puede reproducir este video.
       </video>
     </div>
+
   </section>
+
 </section>
+
 
 <!-- ENTREGAS -->
-<section class="entregas-header" id="contenido" *ngIf="ui.entregasTitulo">
-  <h2>{{ ui.entregasTitulo }}</h2>
-</section>
+<section class="entregas-seccion" *ngIf="items.length">
 
-<section class="entregas" *ngIf="items.length">
-  <div class="entregas-grid">
-    <div class="objetos" *ngFor="let item of items">
+  <!-- ENCABEZADO -->
+  <div class="entregas-header" *ngIf="ui.entregasTitulo">
+    <h2>{{ ui.entregasTitulo }}</h2>
+  </div>
 
-      <!-- PORTADA -->
-      <img
-        *ngIf="item.imagen"
-        [src]="item.imagen"
-        [alt]="item.nombre">
+  <!-- TARJETAS -->
+  <div class="entregas">
 
-      <!-- PORTADA PENDIENTE -->
-      <div
-        class="portada-pendiente"
-        *ngIf="!item.imagen"
-        role="img"
-        aria-label="Portada pendiente">
-        <i class="fa-regular fa-image" aria-hidden="true"></i>
-        <span>Portada pendiente</span>
-      </div>
+    <div class="entregas-grid">
 
-      <!-- TÍTULO -->
-      <h4>{{ item.nombre }}</h4>
+      <article class="objetos" *ngFor="let item of items">
 
-      <!-- ENTREGA -->
-      <span *ngIf="item.entrega">{{ item.entrega }}</span>
+        <!-- PORTADA -->
+        <div class="portada-container">
 
-      <!-- ESTADO -->
-      <span
-        class="estado-recurso"
-        [ngClass]="'estado-' + item.estado">
-        {{
-          item.estado === 'disponible'
-            ? 'Disponible'
-            : item.estado === 'en-desarrollo'
+          <img *ngIf="item.imagen" [src]="item.imagen" [alt]="'Portada de ' + item.nombre">
+
+          <!-- PORTADA PENDIENTE -->
+          <div class="portada-pendiente" *ngIf="!item.imagen" role="img" aria-label="Portada pendiente">
+
+            <i class="fa-regular fa-image" aria-hidden="true"></i>
+            <span>Portada pendiente</span>
+
+          </div>
+
+        </div>
+
+        <!-- INFORMACIÓN -->
+        <div class="objeto-info">
+
+          <h4>{{ item.nombre }}</h4>
+
+          <div class="objeto-etiquetas">
+
+            <span class="entrega-numero" *ngIf="item.entrega">
+              {{ item.entrega }}
+            </span>
+
+            <span class="estado-recurso" [ngClass]="'estado-' + item.estado">
+
+              {{
+              item.estado === 'disponible'
+              ? 'Disponible'
+              : item.estado === 'en-desarrollo'
               ? 'En desarrollo'
               : 'Próximamente'
-        }}
-      </span>
+              }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
     </div>
+
+    <!-- LISTADO -->
+    <div class="listado-container" *ngIf="lista.length">
+
+      <button type="button" class="toggle-titulo" [attr.aria-expanded]="mostrarListado"
+        (click)="mostrarListado = !mostrarListado">
+
+        <i class="fa-solid" [ngClass]="mostrarListado ? 'fa-chevron-up' : 'fa-chevron-down'">
+        </i>
+
+        <span>LISTADO</span>
+
+      </button>
+
+      <div class="lista" *ngIf="mostrarListado">
+
+        <p *ngFor="let item of lista; let i = index">
+          <span>{{ i + 1 }}.</span>
+          {{ item.nombre }}
+        </p>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- LISTADO -->
-  <div class="listado-container">
-    <h2 class="toggle-titulo" (click)="mostrarListado = !mostrarListado">
-      {{ mostrarListado ? '▲' : '▼' }}
-      <u>LISTADO</u>
-    </h2>
-
-    <div class="lista" *ngIf="mostrarListado">
-      <p *ngFor="let item of lista; let i = index">
-        {{ i + 1 }}. {{ item.nombre }}
-      </p>
-    </div>
-  </div>
 </section>
+
+
 
 <!-- REDES -->
 <section class="redes-pilares">
+
   <h2>¡Seguinos!</h2>
 
   <div class="redes-footer">
-    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="icon-footer">
+
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="icon-footer" aria-label="Facebook">
       <i class="fa-brands fa-facebook-f"></i>
     </a>
 
-    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="icon-footer">
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="icon-footer"
+      aria-label="Instagram">
       <i class="fa-brands fa-instagram"></i>
     </a>
 
-    <a href="mailto:tec.incube@gmail.com" class="icon-footer">
-      <i class="fa-regular fa-envelope"></i>
-    </a>
   </div>
+
 </section>
 
+
 <!-- MODAL -->
-<div class="modal" *ngIf="mostrarFormulario">
-  <div class="modal-contenido">
-    <button class="cerrar" type="button" (click)="cerrarFormulario()">×</button>
+<div class="modal" *ngIf="mostrarFormulario" (click)="cerrarFormulario()">
 
-    <h2>{{ tituloFormulario }}</h2>
+  <div class="modal-contenido" role="dialog" aria-modal="true" aria-labelledby="titulo-modal"
+    (click)="$event.stopPropagation()">
 
-    <p class="descripcion-formulario">
-      Completá el formulario y nos comunicaremos con vos a la brevedad.
-    </p>
+    <!-- CERRAR -->
+    <button class="cerrar" type="button" (click)="cerrarFormulario()" aria-label="Cerrar formulario">
+      &times;
+    </button>
 
+    <!-- ENCABEZADO -->
+    <div class="modal-header">
+      <div class="modal-icono">
+        <i class="fa-regular fa-envelope"></i>
+      </div>
+
+      <h2 id="titulo-modal">{{ tituloFormulario }}</h2>
+
+      <p class="descripcion-formulario">
+        Completá el formulario y nos comunicaremos con vos a la brevedad.
+      </p>
+    </div>
+
+    <!-- FORMULARIO -->
     <form (ngSubmit)="enviarConsulta(formulario)" #formulario="ngForm" novalidate>
-      <label>Nombre y apellido</label>
-      <input
-        type="text"
-        name="nombre"
-        [(ngModel)]="nombre"
-        placeholder="Ingresá tu nombre completo"
-        required>
 
-      <label>Correo electrónico</label>
-      <input
-        type="email"
-        name="correo"
-        [(ngModel)]="correo"
-        placeholder="ejemplo@gmail.com"
-        required
-        email>
+      <div class="campo-formulario">
+        <label for="nombre">Nombre y apellido</label>
+        <input id="nombre" type="text" name="nombre" [(ngModel)]="nombre" placeholder="Ingresá tu nombre completo"
+          required>
+      </div>
 
-      <label>Teléfono (opcional)</label>
-      <input
-        type="tel"
-        name="telefono"
-        [(ngModel)]="telefono"
-        placeholder="+54 9 221...">
+      <div class="campo-formulario">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" type="email" name="correo" [(ngModel)]="correo" placeholder="ejemplo@gmail.com" required
+          email>
+      </div>
 
-      <label>Asunto</label>
-      <input class="asunto" type="text" [value]="asunto" readonly>
+      <div class="campo-formulario">
+        <label for="telefono">Teléfono <span>(opcional)</span></label>
+        <input id="telefono" type="tel" name="telefono" [(ngModel)]="telefono" placeholder="+54 9 221...">
+      </div>
 
-      <label>Mensaje</label>
-      <textarea
-        name="mensaje"
-        [(ngModel)]="mensaje"
-        rows="6"
-        placeholder="Escribí tu consulta..."
-        required></textarea>
+      <div class="campo-formulario">
+        <label for="asunto">Asunto</label>
+        <input id="asunto" class="asunto" type="text" [value]="asunto" readonly>
+      </div>
+
+      <div class="campo-formulario">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" [(ngModel)]="mensaje" rows="4" placeholder="Escribí tu consulta..."
+          required>
+        </textarea>
+      </div>
 
       <button class="btn-enviar" type="submit">
         <i class="fa-solid fa-paper-plane"></i>
         Enviar consulta
       </button>
+
     </form>
 
+    <!-- CONTACTO ALTERNATIVO -->
     <div class="info-contacto">
-      <p>También podés escribirnos directamente a:</p>
-      <strong>tec.incube@gmail.com</strong>
+      <i class="fa-regular fa-envelope"></i>
+      <span>También podés escribirnos a</span>
+      <a href="mailto:tec.incube@gmail.com">
+        tec.incube@gmail.com
+      </a>
     </div>
+
   </div>
 </div>

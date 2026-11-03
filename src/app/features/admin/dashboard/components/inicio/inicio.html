@@ -1,0 +1,146 @@
+<!-- BIENVENIDA -->
+<section class="welcome">
+    <div>
+        <span class="eyebrow">CENTRO DE CONTROL</span>
+        <h1>¡Hola, administrador!</h1>
+        <p>Gestioná los contenidos educativos de inCUBë desde un solo lugar.</p>
+    </div>
+    <div class="welcome-decoration" aria-hidden="true">I</div>
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section class="stats-grid" aria-label="Resumen del catálogo">
+
+    <article class="stat-card">
+        <div class="stat-top">
+            <span class="stat-icon green">▤</span>
+            <span class="stat-label">CATÁLOGO</span>
+        </div>
+
+        <strong class="stat-value">{{ colecciones.length }}</strong>
+        <span class="stat-description">Colecciones registradas</span>
+        <span class="stat-note">Colecciones publicadas: {{ colecciones.length }}</span>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-top">
+            <span class="stat-icon orange">▣</span>
+            <span class="stat-label">CONTENIDO</span>
+        </div>
+
+        <strong class="stat-value">{{ recursos.length }}</strong>
+        <span class="stat-description">Libros y proyectos</span>
+        <span class="stat-note">{{ totalLibros }} libros · {{ totalProyectos }} proyectos</span>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-top">
+            <span class="stat-icon blue">▧</span>
+            <span class="stat-label">MULTIMEDIA</span>
+        </div>
+
+        <strong class="stat-value">{{ totalImagenes }}</strong>
+        <span class="stat-description">Imágenes referenciadas</span>
+        <span class="stat-note">Según las rutas guardadas en el catálogo</span>
+    </article>
+
+</section>
+
+<!-- ACCESOS RÁPIDOS Y ESTADO DEL PROYECTO -->
+<section class="content-grid">
+
+    <article class="panel quick-panel">
+        <div class="panel-heading">
+            <div>
+                <h2>Accesos rápidos</h2>
+                <p>Elegí qué querés administrar.</p>
+            </div>
+        </div>
+
+        <button class="quick-action" type="button" (click)="seleccionarSeccion('colecciones')">
+            <span class="quick-icon green">▤</span>
+            <span class="quick-copy">
+                <strong>Administrar colecciones</strong>
+                <small>Crear, editar y organizar colecciones.</small>
+            </span>
+            <span class="arrow">→</span>
+        </button>
+
+        <button class="quick-action" type="button" (click)="seleccionarSeccion('recursos')">
+            <span class="quick-icon orange">▣</span>
+            <span class="quick-copy">
+                <strong>Libros y proyectos</strong>
+                <small>Gestionar recursos y sus estados.</small>
+            </span>
+            <span class="arrow">→</span>
+        </button>
+
+        <button class="quick-action" type="button" (click)="seleccionarSeccion('archivos')">
+            <span class="quick-icon blue">▧</span>
+            <span class="quick-copy">
+                <strong>Imágenes y archivos</strong>
+                <small>Preparar la gestión de portadas y fotos.</small>
+            </span>
+            <span class="arrow">→</span>
+        </button>
+    </article>
+
+    <article class="panel status-panel">
+
+        <div class="panel-heading">
+            <div>
+                <h2>Estado del proyecto</h2>
+                <p>Preparación del administrador</p>
+            </div>
+            <span class="status-badge">En preparación</span>
+        </div>
+
+        <div class="status-row">
+            <span class="status-indicator completed"></span>
+            <span>Interfaz del panel</span>
+            <strong>Diseño</strong>
+        </div>
+
+        <div class="status-row">
+            <span class="status-indicator pending"></span>
+            <span>Inicio de sesión seguro</span>
+            <strong>Pendiente</strong>
+        </div>
+
+        <div class="status-row">
+            <span class="status-indicator pending"></span>
+            <span>Base de datos Firestore</span>
+            <strong>Pendiente</strong>
+        </div>
+
+        <div class="status-row">
+            <span class="status-indicator pending"></span>
+            <span>Almacenamiento de imágenes</span>
+            <strong>Pendiente</strong>
+        </div>
+
+        <div class="status-footer">
+            <strong>Sincronización del catálogo</strong>
+
+            <p>
+                Actualizá Firestore con los cambios realizados
+                en el catálogo del proyecto.
+            </p>
+
+            <button
+                type="button"
+                class="secondary-button"
+                [disabled]="cargandoCatalogo"
+                (click)="sincronizarCatalogo()">
+
+                {{ cargandoCatalogo ? 'Sincronizando...' : 'Sincronizar catálogo' }}
+            </button>
+
+            <p *ngIf="mensajeCarga" role="status" style="white-space: pre-line">
+                {{ mensajeCarga }}
+            </p>
+        </div>
+
+    </article>
+
+</section>

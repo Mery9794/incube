@@ -1,0 +1,90 @@
+<section class="admin-section">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">CATÁLOGO EDUCATIVO</span>
+            <h1>Colecciones</h1>
+            <p>Administrá las colecciones educativas de inCUBë.</p>
+        </div>
+
+        <span class="section-counter">
+            {{ colecciones.length }} colecciones
+        </span>
+    </div>
+
+    <div class="collections-grid">
+
+        <article class="collection-card" *ngFor="let coleccion of colecciones">
+
+            <div class="collection-image">
+
+                <img
+                    [src]="coleccion.imagenTarjeta"
+                    [alt]="'Portada de ' + coleccion.titulo"
+                    *ngIf="coleccion.imagenTarjeta; else sinImagen"
+                />
+
+                <ng-template #sinImagen>
+                    <div class="no-image">Sin imagen</div>
+                </ng-template>
+
+            </div>
+
+            <div class="collection-info">
+
+                <div class="collection-meta">
+
+                    <span
+                        class="collection-status"
+                        [class.unpublished]="!coleccion.publicada"
+                    >
+                        {{ coleccion.publicada ? 'Publicada' : 'Borrador' }}
+                    </span>
+
+                    <span class="collection-order">
+                        Orden {{ coleccion.orden }}
+                    </span>
+
+                </div>
+
+                <h2>{{ coleccion.titulo }}</h2>
+
+                <p>{{ coleccion.descripcionTarjeta }}</p>
+
+                <div class="collection-footer">
+
+                    <span>
+                        {{ cantidadRecursos(coleccion.id) }} recursos
+                    </span>
+
+                    <button
+                        type="button"
+                        class="edit-button"
+                        disabled
+                        title="La edición se habilitará en un paso posterior"
+                    >
+                        Editar próximamente
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+    <p class="section-help">
+        En esta primera versión podés consultar las colecciones existentes.
+        Después agregaremos las funciones para crear, editar y eliminar.
+    </p>
+
+    <button
+        class="back-button"
+        type="button"
+        (click)="regresarInicio()"
+    >
+        ← Volver al inicio del panel
+    </button>
+
+</section>

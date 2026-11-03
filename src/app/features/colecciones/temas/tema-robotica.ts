@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ColeccionComponent } from '../colecciones';
 import { ColeccionVista } from '../coleccion-vista';
 
-/** Estilos de las colecciones del pilar Robótica Aplicada. */
+/** Estilos de las colecciones del pilar Kit Arduino. */
 @Component({
   selector: 'app-tema-robotica',
   standalone: true,

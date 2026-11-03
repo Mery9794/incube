@@ -1,5 +1,5 @@
 /**
- * Modelo de datos del catálogo de INCUBÉ.
+ * Modelo de datos del catálogo de inCUBë.
  *
  * Jerarquía:  Pilar  →  Colección  →  Recurso (libro, proyecto…)
  *
@@ -18,7 +18,10 @@
  */
 
 /** Identifica el conjunto de estilos que usa un pilar. Ver features/colecciones/temas. */
-export type TemaId = 'realidad-aumentada' | 'robotica';
+export type TemaId =
+  | 'realidad-aumentada'
+  | 'robotica'
+  | 'impresion-3d';
 
 export type EstadoRecurso = 'disponible' | 'en-desarrollo' | 'proximamente';
 

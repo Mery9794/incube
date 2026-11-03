@@ -2,13 +2,13 @@
   <section class="login-card">
 
     <div class="login-form-panel">
-      <a class="brand" routerLink="/" aria-label="Volver al inicio de INCUBÉ">
-        <img src="logos/logo-incube1.png" alt="INCUBÉ">
+      <a class="brand" routerLink="/" aria-label="Volver al inicio de inCUBë">
+        <img src="logos/logo-incube1.png" alt="inCUBë">
       </a>
 
       <div class="form-content">
         <h1>Iniciar sesión</h1>
-        <p class="subtitle">Administración de INCUBÉ</p>
+        <p class="subtitle">Administración de inCUBë</p>
 
         <form (ngSubmit)="iniciarSesion()" #loginForm="ngForm">
 
@@ -50,8 +50,8 @@
             {{ mensajeError }}
           </p>
 
-          <button type="submit" class="login-button" [disabled]="loginForm.invalid">
-            Iniciar sesión
+          <button type="submit" class="login-button" [disabled]="loginForm.invalid || cargando">
+            {{ cargando ? 'Ingresando...' : 'Iniciar sesión' }}
           </button>
         </form>
 
@@ -66,7 +66,7 @@
       <div class="image-overlay"></div>
 
       <div class="image-caption">
-        <span class="caption-label">INCUBÉ</span>
+        <span class="caption-label">inCUBë</span>
         <h2>Aprender, crear y descubrir.</h2>
         <p>Recursos educativos para explorar nuevas ideas.</p>
       </div>

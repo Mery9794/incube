@@ -18,21 +18,23 @@ export class NavbarComponent {
   navbarScrolled: boolean = false;
 
   toggleMenu(): void {
-
     this.menuAbierto = !this.menuAbierto;
+  }
+
+  cerrarMenu(): void {
+    this.menuAbierto = false;
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
 
     this.scrollPosition =
-      window.pageYOffset
-      || document.documentElement.scrollTop
-      || document.body.scrollTop
-      || 0;
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
-    this.navbarScrolled =
-      this.scrollPosition > 20;
+    this.navbarScrolled = this.scrollPosition > 20;
   }
 
 }

@@ -1,0 +1,211 @@
+
+<section class="admin-section">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">CATÁLOGO EDUCATIVO</span>
+            <h1>Libros y proyectos</h1>
+            <p>Consultá los recursos educativos registrados en inCUBë.</p>
+        </div>
+
+        <span class="section-counter">
+            {{ recursos.length }} recursos
+        </span>
+    </div>
+
+    <div class="resource-collections">
+
+        <section class="resource-collection-group" *ngFor="let coleccion of colecciones">
+
+            <ng-container *ngIf="getCantidadRecursos(coleccion.id) > 0">
+
+                <header class="resource-group-heading">
+                    <div>
+                        <span class="eyebrow">
+                            {{ coleccion.pilarId === 'realidad-aumentada'
+                                ? 'REALIDAD AUMENTADA'
+                                : 'KID ARDUINO' }}
+                        </span>
+
+                        <h2>{{ coleccion.titulo }}</h2>
+
+                        <p>
+                            {{ getCantidadRecursos(coleccion.id) }} recursos en esta colección
+                        </p>
+                    </div>
+
+                    <a class="view-collection-button" [routerLink]="['/coleccion', coleccion.slug]">
+                        Ver colección <span aria-hidden="true">↗</span>
+                    </a>
+                </header>
+
+                <div class="resources-list">
+
+                    <article class="resource-card"
+                        *ngFor="let recurso of recursos"
+                        [hidden]="recurso.coleccionId !== coleccion.id">
+
+                        <div class="resource-image">
+                            <img
+                                *ngIf="recurso.imagen; else recursoSinImagen"
+                                [src]="recurso.imagen"
+                                [alt]="recurso.titulo" />
+
+                            <ng-template #recursoSinImagen>
+                                <div class="no-image">Sin portada</div>
+                            </ng-template>
+                        </div>
+
+                        <div class="resource-info">
+
+                            <div class="resource-badges">
+                                <span class="resource-type">
+                                    {{ recurso.tipo === 'libro' ? 'Libro' : 'Proyecto' }}
+                                </span>
+
+                                <span
+                                    class="resource-status"
+                                    [class.status-development]="recurso.estado === 'en-desarrollo'"
+                                    [class.status-soon]="recurso.estado === 'proximamente'">
+
+                                    {{ recurso.estado === 'disponible'
+                                        ? 'Disponible'
+                                        : recurso.estado === 'en-desarrollo'
+                                        ? 'En desarrollo'
+                                        : 'Próximamente' }}
+                                </span>
+                            </div>
+
+                            <h3>{{ recurso.titulo }}</h3>
+
+                            <p class="resource-delivery">
+                                Entrega: {{ recurso.entrega || 'Sin entrega asignada' }}
+                            </p>
+
+                        </div>
+
+                        <div class="resource-actions">
+                            <button
+                                type="button"
+                                class="edit-button"
+                                (click)="editarRecurso(recurso)">
+                                Editar recurso
+                            </button>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </ng-container>
+
+        </section>
+
+    </div>
+
+    <!-- FORMULARIO DE EDICIÓN DE LIBROS Y PROYECTOS -->
+
+    <div class="edit-overlay" *ngIf="recursoEnEdicion as edicion">
+
+        <article class="edit-modal">
+
+            <div class="edit-modal-header">
+                <div>
+                    <span class="eyebrow">CATÁLOGO EDUCATIVO</span>
+                    <h2>Editar recurso</h2>
+                    <p>Modificá la información del libro o proyecto.</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="edit-close"
+                    (click)="cancelar()"
+                    [disabled]="guardandoRecurso">
+                    ×
+                </button>
+            </div>
+
+            <div class="edit-field">
+                <label for="tituloRecurso">Título</label>
+                <input
+                    id="tituloRecurso"
+                    type="text"
+                    [(ngModel)]="edicion.titulo">
+            </div>
+
+            <div class="edit-field">
+                <label for="tipoRecurso">Tipo de recurso</label>
+                <select id="tipoRecurso" [(ngModel)]="edicion.tipo">
+                    <option value="libro">Libro</option>
+                    <option value="proyecto">Proyecto</option>
+                </select>
+            </div>
+
+            <div class="edit-field">
+                <label for="entregaRecurso">Entrega</label>
+                <input
+                    id="entregaRecurso"
+                    type="text"
+                    [(ngModel)]="edicion.entrega"
+                    placeholder="Ej. Primera entrega">
+            </div>
+
+            <div class="edit-field">
+                <label for="imagenRecurso">Ruta de la imagen</label>
+                <input
+                    id="imagenRecurso"
+                    type="text"
+                    [(ngModel)]="edicion.imagen"
+                    placeholder="Ej. recursos/portada.png">
+            </div>
+
+            <div class="edit-field">
+                <label for="estadoRecurso">Estado</label>
+                <select id="estadoRecurso" [(ngModel)]="edicion.estado">
+                    <option value="disponible">Disponible</option>
+                    <option value="en-desarrollo">En desarrollo</option>
+                    <option value="proximamente">Próximamente</option>
+                </select>
+            </div>
+
+            <p *ngIf="mensajeRecurso" class="edit-message" role="status">
+                {{ mensajeRecurso }}
+            </p>
+
+            <div class="edit-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    (click)="cancelar()"
+                    [disabled]="guardandoRecurso">
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    (click)="guardarRecurso()"
+                    [disabled]="guardandoRecurso">
+                    {{ guardandoRecurso ? 'Guardando...' : 'Guardar cambios' }}
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+    <p class="section-help">
+        Desde esta sección podés editar los títulos, tipos, entregas,
+        imágenes y estados de los libros y proyectos.
+    </p>
+
+    <button
+        class="back-button"
+        type="button"
+        (click)="regresarInicio()">
+        ← Volver al inicio del panel
+    </button>
+
+</section>

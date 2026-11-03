@@ -1,3 +1,7 @@
 @if (vista(); as v) {
-  <ng-container *ngComponentOutlet="temas[v.tema]; inputs: { vista: v }" />
+  @if (temas[v.tema]; as tema) {
+    <ng-container
+      *ngComponentOutlet="tema; inputs: { vista: v }">
+    </ng-container>
+  }
 }

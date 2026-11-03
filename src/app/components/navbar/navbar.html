@@ -1,95 +1,102 @@
 <header class="navbar" role="banner">
-
   <div class="navbar-container">
 
     <!-- LOGO -->
     <div class="logo-container">
-
-      <a href="#inicio">
-
+      <a href="#inicio" aria-label="inCUBë - Inicio">
         <img src="logos/logo-incube- blanco.png" alt="Logo inCUBë" />
-
       </a>
-
     </div>
 
-    <!-- BOTON HAMBURGUESA -->
-    <button class="menu-toggle" (click)="toggleMenu()">
-      ☰
+    <!-- BOTÓN HAMBURGUESA -->
+    <button
+      class="menu-toggle"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuAbierto"
+      aria-label="Abrir menú">
+      <i class="fa-solid" [ngClass]="menuAbierto ? 'fa-xmark' : 'fa-bars'"></i>
     </button>
 
-    <!-- MENU -->
+    <!-- NAVEGACIÓN -->
     <nav class="nav-links" [class.active]="menuAbierto">
 
-      <a href="#coleccion">
-        Colección
-      </a>
-      <a routerLink="/conocenos">
-        Conócenos
+      <a href="#inicio" class="nav-link active" (click)="cerrarMenu()">
+        <i class="fa-solid fa-house"></i>
+        <span>Inicio</span>
       </a>
 
+      <a href="#coleccion" class="nav-link" (click)="cerrarMenu()">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Colección</span>
+      </a>
+
+      <a routerLink="/comunidad" class="nav-link" (click)="cerrarMenu()">
+        <i class="fa-solid fa-users"></i>
+        <span>Comunidad</span>
+      </a>
+
+      <a routerLink="/conocenos" class="nav-link" (click)="cerrarMenu()">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Conócenos</span>
+      </a>
+
+      <!-- CONTACTO -->
       <div class="dropdown">
-
-        <a class="dropdown-btn">
-          Contacto
-          <i class="fa-solid fa-chevron-down"></i>
+        <a class="nav-link dropdown-btn">
+          <i class="fa-regular fa-envelope"></i>
+          <span>Contacto</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
         </a>
 
         <div class="dropdown-content">
-
-          <a routerLink="/atencion-cliente">
+          <a routerLink="/atencion-cliente" (click)="cerrarMenu()">
             Atención al cliente
           </a>
 
-          <a routerLink="/contactanos">
+          <a routerLink="/contactanos" (click)="cerrarMenu()">
             Contactanos
           </a>
-
         </div>
-
       </div>
 
-
-      <!-- REDES MOBILE -->
+      <!-- REDES PARA CELULAR -->
       <div class="mobile-socials">
-
-        <a href="https://facebook.com" target="_blank">
-          Facebook
+        <a href="https://facebook.com" target="_blank" rel="noopener">
+          <i class="fa-brands fa-facebook-f"></i> Facebook
         </a>
 
-        <a href="https://instagram.com" target="_blank">
-          Instagram
+        <a href="https://instagram.com" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i> Instagram
         </a>
-
       </div>
 
     </nav>
 
+    <!-- REDES Y ACCESO -->
+    <div class="header-actions">
 
-<!-- REDES DESKTOP -->
-<div class="social-icons">
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"
+           rel="noopener" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
 
-  <a href="https://facebook.com" target="_blank" class="icon-footer"
-     aria-label="Facebook">
-    <i class="fa-brands fa-facebook-f"></i>
-  </a>
+        <a href="https://instagram.com" target="_blank"
+           rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
 
-  <a href="https://instagram.com" target="_blank" class="icon-footer"
-     aria-label="Instagram">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
+      <div class="header-divider"></div>
 
-  <!-- ACCESO ADMINISTRADOR -->
-  <a routerLink="/admin/login"
-     class="icon-footer admin-login-icon"
-     aria-label="Iniciar sesión"
-     title="Iniciar sesión">
-    <i class="fa-solid fa-user"></i>
-  </a>
+      <a routerLink="/admin/login"
+         class="login-icon"
+         aria-label="Iniciar sesión"
+         title="Iniciar sesión">
+        <i class="fa-solid fa-user"></i>
+      </a>
 
-</div>
-
+    </div>
 
   </div>
-
 </header>

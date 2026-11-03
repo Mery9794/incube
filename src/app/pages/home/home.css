@@ -1,300 +1,778 @@
-.home-container{
 
-    max-width:90%;
+/* ================= CONTENEDOR PRINCIPAL ================= */
 
-    margin:auto;
-
+.home-container {
+  max-width: 90%;
+  margin: auto;
 }
 
-/*=========COLECCIONES===========*/
+/* ================= COLECCIONES ================= */
 
-.colecciones{
-
-    padding:60px 0;
-    padding-bottom: 0px;
-
+.colecciones {
+  padding: 45px 0 0;
 }
 
-.card2{
-
-    background:#fff;
-
-    border-radius:18px;
-
-    padding:40px;
-
+.card2 {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px;
 }
 
-/*====================*/
+/* ================= ENCABEZADO ================= */
 
-.colecciones h2{
-
-    font-size:2.6rem;
-
-    text-align:center;
-
-    margin-bottom:15px;
-
-    font-weight:700;
-
+.colecciones-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 18px;
 }
 
-.colecciones>div>p{
-
-    text-align:center;
-
-    max-width:800px;
-
-    margin:0 auto 50px;
-
-    color:#666;
-
-    line-height:1.8;
-
+.colecciones-heading h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  text-align: center;
+  margin: 0;
+  font-weight: 700;
+  color: #252a32;
+  white-space: nowrap;
 }
 
-/*====================*/
-
-.coleccion-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,minmax(0,1fr));
-
-    gap:40px;
-
+.heading-line {
+  width: 75px;
+  height: 2px;
+  flex-shrink: 0;
+  background: #303640;
+  opacity: 0.65;
 }
 
-/*====================*/
+/* ================= TEXTO INTRODUCTORIO ================= */
 
-.coleccion-card{
-
-    background:#fff;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-
-    transition:.3s;
-
-    display:flex;
-
-    flex-direction:column;
-
+.colecciones-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 45px;
+  color: #666666;
+  line-height: 1.8;
+  font-size: 16px;
 }
 
-.coleccion-card:hover{
+/* ================= GRILLA ================= */
 
-    transform:translateY(-6px);
+.coleccion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
 
+  /* Alinear el ancho con Comunidad inCUBë */
+  width: calc(100% + 80px);
+  margin-left: -40px;
 }
 
-/*====================*/
+/* ================= TARJETAS ================= */
 
-.banner-coleccion{
+.coleccion-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 18px;
+  overflow: hidden;
 
-    width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-    aspect-ratio:16/9;
+  min-width: 0;
+  min-height: 420px;
 
-    background-size:contain;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 
-    background-repeat:no-repeat;
-
-    background-position:center;
-
-    background-color:#fff;
-
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/*====================*/
-
-.coleccion-info{
-
-    padding:28px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    flex:1;
-
+.coleccion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
-.coleccion-info h3{
+/* ================= IMAGEN DE LAS COLECCIONES ================= */
 
-    font-size:2rem;
+.banner-coleccion {
+  width: 100%;
+  height: 270px;
+  min-height: 270px;
 
-    margin-bottom:16px;
+  background-size: cover;
+  background-position: center 55%;
+  background-repeat: no-repeat;
 
-    color:#1d1d1d;
-
+  background-color: #ffffff;
 }
 
-.coleccion-info p{
+/* ================= INFORMACIÓN ================= */
 
-    color:#666;
+.coleccion-info {
+  flex: 1;
+  min-width: 0;
 
-    line-height:1.7;
+  padding: 26px;
 
-    margin-bottom:30px;
-
-    flex:1;
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-/*====================*/
+/* ================= TÍTULO E ÍCONO ================= */
 
-.button-collection{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:15px;
-
-    border-radius:10px;
-
-    background:#111;
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.3s;
-
+.coleccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
 }
 
-.button-collection:hover{
-
-    background:#2f2f2f;
-
+.coleccion-titulo i {
+  font-size: 28px;
+  color: #303640;
+  flex-shrink: 0;
 }
 
-/*====================*/
-/* PREGUNTAS FRECUENTES */
-/*====================*/
-
-.faq{
-
-    max-width:900px;
-
-    margin:70px auto 40px;
-
+.coleccion-info h3 {
+  font-size: 1.65rem;
+  margin: 0;
+  color: #252a32;
+  font-weight: 700;
 }
 
-.faq h2{
+/* ================= DESCRIPCIÓN ================= */
 
-    text-align:center;
-
-    font-size:2.4rem;
-
-    margin-bottom:35px;
-
+.coleccion-info p {
+  color: #666666;
+  line-height: 1.7;
+  font-size: 15px;
+  margin: 0 0 20px;
 }
 
-.faq-item{
+/* ================= BOTÓN COLECCIÓN ================= */
 
-    border-bottom:1px solid #ddd;
+.button-collection {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
+  padding: 10px 19px;
+
+  border-radius: 25px;
+
+  background: #ffffff;
+  color: #303640;
+
+  border: 1px solid #303640;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.faq-question{
-
-    width:100%;
-
-    background:none;
-
-    border:none;
-
-    cursor:pointer;
-
-    padding:22px 0;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    font-size:1.15rem;
-
-    font-weight:600;
-
-    text-align:left;
-
+.button-collection i {
+  font-size: 12px;
+  transition: transform 0.3s ease;
 }
 
-.faq-question span{
-
-    font-size:1.8rem;
-
-    color:#1b5fa7;
-
+.button-collection:hover {
+  background: #303640;
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
-.faq-answer{
-
-    padding-bottom:22px;
-
+.button-collection:hover i {
+  transform: translateX(4px);
 }
 
-.faq-answer p{
+/* ================= COMUNIDAD inCUBë ================= */
 
-    color:#666;
+.comunidad {
+  margin: 30px 0 55px;
+  padding: 38px 45px;
 
-    line-height:1.8;
+  background: #f1f3f4;
+  border: 1px solid #e4e7e9;
+  border-radius: 24px;
 
+  overflow: hidden;
 }
 
-/*========RESPONSIVE============*/
+.comunidad-contenido {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  align-items: center;
+  gap: 30px;
 
-@media(max-width:900px){
-
-    .coleccion-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .coleccion-info{
-
-        padding:22px;
-
-    }
-
-    .coleccion-info h3{
-
-        font-size:1.7rem;
-
-    }
-
+  max-width: 1450px;
+  margin: auto;
 }
 
-@media(max-width:600px){
+/* PRESENTACIÓN */
 
-    .card2{
+.comunidad-presentacion {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+}
 
-        padding:20px;
+.comunidad-icono-principal {
+  font-size: 55px;
+  color: #303640;
+  flex-shrink: 0;
+}
 
-    }
+.comunidad-texto h2 {
+  margin: 0 0 8px;
+  color: #252a32;
+  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+}
 
-    .colecciones h2{
+.comunidad-texto p {
+  margin: 0 0 18px;
+  color: #626970;
+  font-size: 15px;
+  line-height: 1.6;
+}
 
-        font-size:2rem;
+/* BOTÓN COMUNIDAD */
 
-    }
+.comunidad-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 
-    .colecciones>div>p{
+  padding: 13px 23px;
 
-        font-size:15px;
+  background: #252a32;
+  color: #ffffff;
 
-    }
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
 
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.comunidad-boton:hover {
+  background: #424b55;
+  transform: translateY(-3px);
+}
+
+.comunidad-boton i {
+  transition: transform 0.3s ease;
+}
+
+.comunidad-boton:hover i {
+  transform: translateX(4px);
+}
+
+/* BENEFICIOS */
+
+.comunidad-beneficios {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+
+  padding: 12px 25px;
+
+  border-left: 1px solid #cbd0d4;
+}
+
+.beneficio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #343b43;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.beneficio i {
+  color: #303640;
+  font-size: 21px;
+  flex-shrink: 0;
+}
+
+/* ILUSTRACIÓN */
+
+.comunidad-ilustracion {
+  position: relative;
+  min-height: 155px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comunidad-pantalla {
+  width: 165px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 9px solid #303640;
+  border-bottom-width: 13px;
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: #69737d;
+  font-size: 45px;
+
+  transform: perspective(300px) rotateY(-8deg);
+}
+
+.comunidad-base {
+  position: absolute;
+  bottom: 13px;
+
+  width: 195px;
+  height: 9px;
+
+  background: #69737d;
+  border-radius: 50%;
+}
+
+.comunidad-burbuja {
+  position: absolute;
+  top: 0;
+  right: 10%;
+
+  width: 55px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #303640;
+  color: #ffffff;
+
+  border-radius: 12px;
+  font-size: 23px;
+  z-index: 2;
+}
+
+.comunidad-libros {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+
+  color: #69737d;
+  font-size: 32px;
+}
+
+/* ================= PREGUNTAS FRECUENTES ================= */
+
+.faq {
+  width: 100%;
+  margin: 45px auto 55px;
+}
+
+/* ENCABEZADO */
+
+.faq-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 8px;
+}
+
+.faq-heading h2 {
+  margin: 0;
+  color: #252a32;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.faq-line {
+  width: 75px;
+  height: 2px;
+  flex-shrink: 0;
+  background: #303640;
+  opacity: 0.65;
+}
+
+/* DESCRIPCIÓN */
+
+.faq-intro {
+  text-align: center;
+  color: #737373;
+  font-size: 15px;
+  margin: 0 0 25px;
+}
+
+/* GRILLA DE PREGUNTAS */
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 25px;
+}
+
+/* TARJETAS */
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid #e8e9eb;
+  border-radius: 15px;
+  overflow: hidden;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: #c9cdd2;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.09);
+}
+
+/* PREGUNTA */
+
+.faq-question {
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 13px 20px;
+
+  background: #ffffff;
+  border: none;
+
+  cursor: pointer;
+  text-align: left;
+
+  color: #303640;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* TEXTO E ÍCONO */
+
+.faq-question-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.faq-question-text i {
+  color: #303640;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+/* FLECHA */
+
+.faq-arrow {
+  color: #69737d;
+  font-size: 14px;
+  flex-shrink: 0;
+
+  transition: transform 0.3s ease;
+}
+
+.faq-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* RESPUESTA */
+
+.faq-answer {
+  padding: 0 20px 17px 51px;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: #666666;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1000px) {
+
+  .home-container {
+    max-width: 94%;
+  }
+
+  .card2 {
+    padding: 30px 20px;
+  }
+
+  .coleccion-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+
+  .coleccion-card {
+    min-height: 390px;
+  }
+
+  .banner-coleccion {
+    height: 210px;
+    min-height: 210px;
+  }
+
+  .coleccion-info {
+    padding: 22px;
+  }
+
+  /* Comunidad */
+
+  .comunidad {
+    padding: 30px 25px;
+  }
+
+  .comunidad-contenido {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .comunidad-ilustracion {
+    display: none;
+  }
+
+  /* Preguntas frecuentes */
+
+  .faq-grid {
+    gap: 12px;
+  }
+
+  .faq-question {
+    padding: 13px 15px;
+    font-size: 13px;
+  }
+}
+
+/* ================= CELULARES ================= */
+
+@media (max-width: 600px) {
+
+  .home-container {
+    max-width: 100%;
+  }
+
+  .colecciones {
+    padding-top: 35px;
+  }
+
+  .card2 {
+    padding: 25px 16px;
+  }
+
+  .colecciones-heading {
+    gap: 12px;
+  }
+
+  .colecciones-heading h2 {
+    font-size: 1.55rem;
+    white-space: normal;
+  }
+
+  .heading-line {
+    width: 25px;
+  }
+
+  .colecciones-intro {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .coleccion-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+
+    width: calc(100% + 32px);
+    margin-left: -16px;
+  }
+
+  /* TARJETAS VERTICALES */
+
+  .coleccion-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .banner-coleccion {
+    width: 100%;
+    min-width: 100%;
+    min-height: 190px;
+    height: 190px;
+  }
+
+  .coleccion-info {
+    padding: 20px;
+  }
+
+  .coleccion-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .coleccion-info p {
+    font-size: 14px;
+  }
+
+  /* COMUNIDAD */
+
+  .comunidad {
+    margin: 25px 16px 40px;
+    padding: 27px 20px;
+    border-radius: 18px;
+  }
+
+  .comunidad-contenido {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .comunidad-presentacion {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .comunidad-icono-principal {
+    font-size: 45px;
+  }
+
+  .comunidad-texto h2 {
+    font-size: 1.65rem;
+  }
+
+  .comunidad-texto p {
+    font-size: 14px;
+  }
+
+  .comunidad-beneficios {
+    border-left: none;
+    border-top: 1px solid #cbd0d4;
+    padding: 22px 0 0;
+    gap: 16px;
+  }
+
+  .beneficio {
+    font-size: 13px;
+  }
+
+  .comunidad-ilustracion {
+    display: flex;
+    min-height: 130px;
+  }
+
+  /* PREGUNTAS FRECUENTES */
+
+  .faq {
+    width: 100%;
+    margin: 40px auto 40px;
+    padding: 0 16px;
+  }
+
+  .faq-heading {
+    gap: 12px;
+  }
+
+  .faq-heading h2 {
+    font-size: 1.55rem;
+    white-space: normal;
+  }
+
+  .faq-line {
+    width: 25px;
+  }
+
+  .faq-intro {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .faq-question {
+    min-height: 50px;
+    padding: 13px 15px;
+    font-size: 13px;
+  }
+
+  .faq-answer {
+    padding: 0 15px 15px 45px;
+  }
+}
+
+/* ================= CELULARES PEQUEÑOS ================= */
+
+@media (max-width: 380px) {
+
+  .colecciones-heading h2 {
+    font-size: 1.35rem;
+  }
+
+  .heading-line {
+    width: 18px;
+  }
+
+  .banner-coleccion {
+    height: 165px;
+    min-height: 165px;
+  }
+
+  .coleccion-info {
+    padding: 17px;
+  }
+
+  .coleccion-info h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Preguntas frecuentes */
+
+  .faq-heading h2 {
+    font-size: 1.4rem;
+  }
+
+  .faq-line {
+    width: 18px;
+  }
+
+  .faq-question {
+    font-size: 12px;
+  }
 }

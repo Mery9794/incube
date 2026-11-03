@@ -11,7 +11,7 @@ import { TemaRealidadAumentadaComponent } from '../temas/tema-realidad-aumentada
 import { TemaRoboticaComponent } from '../temas/tema-robotica';
 
 /** Componente de estilos que corresponde al tema de cada pilar. */
-const TEMAS: Record<TemaId, Type<unknown>> = {
+const TEMAS: Partial<Record<TemaId, Type<unknown>>> = {
   'realidad-aumentada': TemaRealidadAumentadaComponent,
   'robotica': TemaRoboticaComponent
 };

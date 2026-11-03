@@ -7,7 +7,9 @@ import { ContactanosComponent } from './pages/contactanos/contactanos';
 import { ColeccionPageComponent } from './features/colecciones/coleccion-page/coleccion-page';
 
 import { Login } from './features/admin/login/login';
-import { Dashboard }  from './features/admin/dashboard/dashboard';
+import { Dashboard } from './features/admin/dashboard/dashboard';
+
+import { adminAuthGuard } from './services/admin-auth-guard';
 
 export const routes: Routes = [
 
@@ -29,7 +31,11 @@ export const routes: Routes = [
 
   // ADMINISTRACIÓN
   { path: 'admin/login', component: Login },
-  { path: 'admin/dashboard', component: Dashboard },
+  {
+    path: 'admin/dashboard',
+    component: Dashboard,
+    canActivate: [adminAuthGuard]
+  },
 
   // REDIRECCIÓN
   { path: '**', redirectTo: '' }

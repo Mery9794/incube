@@ -105,6 +105,7 @@ export class ColeccionComponent implements OnInit, OnChanges, OnDestroy {
 
   abrirFormulario(tipo: 'info' | 'contacto') {
 
+    this.menuOpen = false;
     this.mostrarFormulario = true;
 
     if (tipo === 'info') {
@@ -158,7 +159,7 @@ export class ColeccionComponent implements OnInit, OnChanges, OnDestroy {
         }
       );
 
-      alert('¡Consulta enviada correctamente! Gracias por contactar a INCUBÉ.');
+      alert('¡Consulta enviada correctamente! Gracias por contactar a inCUBë.');
 
       formulario.resetForm();
       this.nombre = '';

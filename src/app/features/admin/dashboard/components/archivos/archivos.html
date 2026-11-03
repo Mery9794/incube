@@ -1,0 +1,159 @@
+
+<section class="admin-section">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">BIBLIOTECA MULTIMEDIA</span>
+            <h1>Imágenes y archivos</h1>
+            <p>Consultá y editá las imágenes de las colecciones y recursos de inCUBë.</p>
+        </div>
+
+        <span class="section-counter">{{ totalImagenes }} imágenes</span>
+    </div>
+
+    <div class="media-grid">
+        <!-- Imágenes de las colecciones -->
+        <ng-container *ngFor="let coleccion of colecciones">
+
+            <!-- Imagen de la tarjeta -->
+            <article class="media-card">
+                <div class="media-preview">
+                    <img
+                        *ngIf="imagenPrevisualizaciones['coleccion-' + coleccion.id + '-tarjeta'] || coleccion.imagenTarjeta; else sinTarjeta"
+                        [src]="imagenPrevisualizaciones['coleccion-' + coleccion.id + '-tarjeta'] || coleccion.imagenTarjeta"
+                        [alt]="coleccion.titulo">
+
+                    <ng-template #sinTarjeta>
+                        <div class="media-empty">
+                            <span aria-hidden="true">▧</span>
+                            <strong>Imagen no subida</strong>
+                        </div>
+                    </ng-template>
+
+                    <button
+                        type="button"
+                        class="media-edit-button"
+                        (click)="archivoTarjeta.click()"
+                        [attr.aria-label]="'Cambiar imagen de ' + coleccion.titulo"
+                        title="Agregar o cambiar imagen">
+                        ✎
+                    </button>
+
+                    <input
+                        #archivoTarjeta
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        (change)="previsualizarImagen($event, 'coleccion-' + coleccion.id + '-tarjeta')">
+                </div>
+
+                <div class="media-info">
+                    <span class="media-type">Imagen de colección</span>
+                    <h2>{{ coleccion.titulo }}</h2>
+                    <p>{{ coleccion.imagenTarjeta || 'Imagen no subida' }}</p>
+                    <span class="media-edit-hint">
+                        El lápiz permite elegir una imagen y ver una vista previa.
+                    </span>
+                </div>
+            </article>
+
+            <!-- Imágenes del carrusel -->
+            <article class="media-card"
+                *ngFor="let imagen of coleccion.imagenesCarrusel; let i = index">
+
+                <div class="media-preview">
+                    <img
+                        *ngIf="imagenPrevisualizaciones['carrusel-' + coleccion.id + '-' + i] || imagen; else sinImagenCarrusel"
+                        [src]="imagenPrevisualizaciones['carrusel-' + coleccion.id + '-' + i] || imagen"
+                        [alt]="'Imagen de ' + coleccion.titulo">
+
+                    <ng-template #sinImagenCarrusel>
+                        <div class="media-empty">
+                            <span aria-hidden="true">▧</span>
+                            <strong>Imagen no subida</strong>
+                        </div>
+                    </ng-template>
+
+                    <button
+                        type="button"
+                        class="media-edit-button"
+                        (click)="archivoCarrusel.click()"
+                        [attr.aria-label]="'Cambiar imagen de carrusel de ' + coleccion.titulo"
+                        title="Agregar o cambiar imagen">
+                        ✎
+                    </button>
+
+                    <input
+                        #archivoCarrusel
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        (change)="previsualizarImagen($event, 'carrusel-' + coleccion.id + '-' + i)">
+                </div>
+
+                <div class="media-info">
+                    <span class="media-type">Imagen de carrusel</span>
+                    <h2>{{ coleccion.titulo }} · Imagen {{ i + 1 }}</h2>
+                    <p>{{ imagen || 'Imagen no subida' }}</p>
+                    <span class="media-edit-hint">
+                        El lápiz permite elegir una imagen y ver una vista previa.
+                    </span>
+                </div>
+            </article>
+        </ng-container>
+
+        <!-- Imágenes de los recursos -->
+        <ng-container *ngFor="let recurso of recursos">
+            <article class="media-card">
+                <div class="media-preview">
+                    <img
+                        *ngIf="imagenPrevisualizaciones['recurso-' + recurso.id] || recurso.imagen; else sinImagenRecurso"
+                        [src]="imagenPrevisualizaciones['recurso-' + recurso.id] || recurso.imagen"
+                        [alt]="recurso.titulo">
+
+                    <ng-template #sinImagenRecurso>
+                        <div class="media-empty">
+                            <span aria-hidden="true">▧</span>
+                            <strong>Imagen no subida</strong>
+                        </div>
+                    </ng-template>
+
+                    <button
+                        type="button"
+                        class="media-edit-button"
+                        (click)="archivoRecurso.click()"
+                        [attr.aria-label]="'Cambiar imagen de ' + recurso.titulo"
+                        title="Agregar o cambiar imagen">
+                        ✎
+                    </button>
+
+                    <input
+                        #archivoRecurso
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        (change)="previsualizarImagen($event, 'recurso-' + recurso.id)">
+                </div>
+
+                <div class="media-info">
+                    <span class="media-type">
+                        {{ recurso.tipo === 'libro' ? 'Portada de libro' : 'Imagen de proyecto' }}
+                    </span>
+                    <h2>{{ recurso.titulo }}</h2>
+                    <p>{{ recurso.imagen || 'Imagen no subida' }}</p>
+                    <span class="media-edit-hint">
+                        El lápiz permite elegir una imagen y ver una vista previa.
+                    </span>
+                </div>
+            </article>
+        </ng-container>
+    </div>
+
+    <p class="section-help">
+        Podés seleccionar una imagen nueva con el lápiz y ver su vista previa.
+        El cambio todavía no se guarda de forma permanente; eso se conectará con Firebase.
+    </p>
+
+    <button class="back-button" type="button" (click)="regresarInicio()">
+        ← Volver al inicio del panel
+    </button>
+</section>

@@ -1,0 +1,206 @@
+:host {
+    display: block;
+    color: #252b27;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tarjetas de configuración */
+
+.config-card {
+    margin-bottom: 20px;
+}
+
+.config-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.config-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #edf5ef;
+    color: #286844;
+    font-size: 22px;
+}
+
+.config-title h2 {
+    margin: 0 0 5px;
+    font-size: 17px;
+}
+
+.config-title p {
+    margin: 0;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Campos */
+
+.config-field {
+    margin-bottom: 20px;
+}
+
+.config-field:last-child {
+    margin-bottom: 0;
+}
+
+.config-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.config-field input,
+.config-field textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    background: #fff;
+    color: #444;
+    font: inherit;
+    font-size: 13px;
+}
+
+.config-field textarea {
+    resize: vertical;
+}
+
+/* Visibilidad */
+
+.config-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0;
+    cursor: pointer;
+}
+
+.config-toggle strong,
+.config-toggle small {
+    display: block;
+}
+
+.config-toggle strong {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.config-toggle small {
+    color: #888;
+    font-size: 11px;
+}
+
+.config-toggle input {
+    width: 18px;
+    height: 18px;
+    accent-color: #286844;
+    cursor: pointer;
+}
+
+.config-warning {
+    margin: 8px 0 0;
+    padding: 12px;
+    border-radius: 8px;
+    background: #fff8e9;
+    color: #8b6b2d;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Estado de servicios */
+
+.config-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.config-status:last-child {
+    border-bottom: none;
+}
+
+.status-pending {
+    color: #a17b35;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Acciones */
+
+.config-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.config-message {
+    margin: 0;
+    color: #397653;
+    font-size: 12px;
+}
+
+/* Adaptación a pantallas pequeñas */
+
+@media (max-width: 600px) {
+    .config-status {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .config-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+/* Botón para volver al inicio */
+
+.back-button {
+    margin-top: 25px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 7px;
+    background: #397346;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.back-button:hover {
+    background: #2e6039;
+}
+/* Botón Guardar ajustes */
+
+.config-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 7px;
+    background: #286844;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.config-actions button:hover {
+    background: #1f5134;
+}

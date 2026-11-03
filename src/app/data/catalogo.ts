@@ -52,14 +52,14 @@ export const PILARES: Pilar[] = [
   },
 
   {
-    id: 'robotica-aplicada',
-    nombre: 'Robótica Aplicada',
+    id: 'kit-arduino',
+    nombre: 'Kit Arduino',
     tema: 'robotica',
     orden: 2,
 
     hero: {
       imagen: '/banner/baner-arduino.png',
-      titulo: 'Robótica Aplicada',
+      titulo: 'Kit Arduino',
       descripcion:
         'Diseño y programación de sistemas robóticos controlados mediante una aplicación móvil.'
     },
@@ -106,7 +106,7 @@ export const COLECCIONES: Coleccion[] = [
   {
     id: 'robotica',
     slug: 'robotica',
-    pilarId: 'robotica-aplicada',
+    pilarId: 'kit-arduino',
     titulo: 'Robótica Aplicada',
     orden: 1,
     publicada: true,
@@ -137,7 +137,7 @@ export const COLECCIONES: Coleccion[] = [
     orden: 2,
     publicada: true,
     descripcionTarjeta:
-      'Explorá dinosaurios, insectos, criaturas marinas y el sistema solar mediante realidad aumentada.',
+      'Explorá dinosaurios, insectos, criaturas oceánicas y el sistema solar mediante realidad aumentada.',
     imagenTarjeta: 'pilares/tarjetaEducación.png',
     imagenesCarrusel: [
       'pilares/realidadAumentada/libros/portadaDinosaurios.png',
@@ -150,7 +150,7 @@ export const COLECCIONES: Coleccion[] = [
       'Sistema Solar',
       'Dinosaurios',
       'Bichos',
-      'Criaturas Oceanicas',
+      'Criaturas Oceánicas',
     ]
   }
 ];
@@ -197,7 +197,7 @@ export const RECURSOS: Recurso[] = [
     estado: 'disponible',
     orden: 3
   },
-  
+
   {
     id: 'criaturas-oceanicas',
     coleccionId: 'ciencias-naturales',
